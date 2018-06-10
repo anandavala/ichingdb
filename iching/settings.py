@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'iching.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'anandava_ichingdb',
-        'USER': 'anandava_iching',
-        'PASSWORD': 'ICisit67*',
-        'HOST': 'anandavala.info',
+        'NAME': 'ichingdb',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
