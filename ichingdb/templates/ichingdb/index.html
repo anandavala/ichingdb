@@ -1,0 +1,13 @@
+<h1>I Ching DB</h1>
+<h3><a href="{% url 'ichingdb:random' %}">Randomly Generate a Hexagram</a></h3>
+<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>
+{% if consultation_list %}
+<h3>Past Consultations</h3>
+    <ul>
+    {% for c in consultation_list %}
+        <li><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.consultation_id }}: {{ c.query }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No consultations are available.</p>
+{% endif %}

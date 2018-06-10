@@ -1,0 +1,12 @@
+<p><a href="{% url 'ichingdb:index' %}">Index</a></p>
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+    
+</form>
+{% endblock %}
