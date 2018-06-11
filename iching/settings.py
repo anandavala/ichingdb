@@ -76,12 +76,15 @@ WSGI_APPLICATION = 'iching.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+with open('/home/ichingdb/db_pwd.txt') as f:
+    DB_PWD = f.read().strip()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ichingdb$ichingdb',
         'USER': 'ichingdb',
-        'PASSWORD': 'ICisit67*',
+        'PASSWORD': DB_PWD,
         'HOST': 'ichingdb.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
