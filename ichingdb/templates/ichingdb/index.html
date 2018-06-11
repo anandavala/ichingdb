@@ -1,4 +1,5 @@
 <h1>I Ching DB</h1>
+<p>May you find insight and inspiration through the I Ching and may this tool help you!</p>
 <h3><a href="{% url 'ichingdb:random' %}">Randomly Generate a Hexagram</a></h3>
 <h3><strike>Manually Enter a Hexagram</strike></h3>
 <!--<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>-->
@@ -6,16 +7,27 @@
 <h3>Past Consultations</h3>
     <ul>
     {% for c in consultation_list %}
-        <li><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.consultation_id }}: {{ c.query }}</a></li>
+        <li><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.query }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No consultations are available.</p>
 {% endif %}
-<p></p>
-<p></p>
 <h1>About</h1>
 <p>This is a prototype of a new "I Ching Engine". The front-end website is deliberately minimal, showing only the core functionality. This can be customised in the future.</p>
-<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple MySQL database and Django to interface this with the web.</p>
-<p>This work is unlicensed and free to use and adapt in any way you see fit.</p>
+<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple MySQL database with a schema that encodes the structure of the I Ching and the associated text fragments.</p>
+<p>This enables one to perform complex readings of the I Ching with ease. A single SQL query pulls together all the associated text fragments, which are then formatted into a 'reading' using Django to interface with the web.</p>
+<p>The prototype has no user-access controls, hence on the demo website updating and deleting are disabled as well as manual hexagrams.</p>
+<p>Thus all consultations are randomly generated and remain part of the archive, however there is no identifying information stored along with them.</p>
+<p>This growing archive is an anonymous indicator of the prevailing questions on people's minds and the corresponding responses from the I Ching.</p>
+<p>Warning: do not take an archived response as 'general advice' unless it is in response to a general query. If it was a personal query the response would take into account the personal situation of the questioner, thus it is best to ask your own question so that your personal situation is taken into account.</p>
+<p><b>Licensing:</b></p>
+<p>This work (excluding the text fragments) is <a href="https://github.com/anandavala/ichingdb/blob/master/LICENSE">unlicensed</a> and free to use and adapt in any way you see fit.</p>
+<p>This approach is simple, flexible, customisable and open source. I hope it will evolve from these humble beginnings.</p>
 <p>The source files can be found <a href="https://github.com/anandavala/ichingdb/">here</a>.</p>
+<p>Note: I am note a professional developer, I'm just an inspired hobbyist flying by the seat of my pants; mostly following tutorials to figure out how to pull it all together. Any help in developing this further would be much appreciated.</p>
+<p>The text fragments included in the database were scraped from the website <a href="http://inthefamilyway.org/iching/">I Ching: Mothering Change</a>, which is based on the work of
+<a href="https://ichinglivingchange.org/">Steven Karcher</a>. I believe these are copyrighted.</p>
+<p>I have used Steven Karcher's book <a href="https://www.amazon.com/Total-I-Ching-Myths-Change/dp/074993980X/ref=sr_1_1?s=books&ie=UTF8&qid=1436475035&sr=1-1&keywords=Total+I+Ching%3A+Myths+for+Change">Total I Ching: Myths For Change</a>
+for many years. I include this text as a sign of respect for his work and out of a desire to provide the best I Ching access to the general public. I only scraped a minimal amount of text and hope there are no copyright issues. If so the text can easily be swapped for another set.</p>
+<p>Enjoy! :)</p>

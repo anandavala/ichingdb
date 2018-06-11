@@ -1,21 +1,24 @@
-<h1>Consultation {{ cid }}:</h1>
+<!-- <h1>Consultation {{ cid }}:</h1>-->
 <!-- <p><a href="{% url 'ichingdb:update' cid %}">Update</a> . . . <a href="{% url 'ichingdb:delete' cid %}">Delete</a> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p> -->
 <p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p>
 {% for c in simple_result %}
 <p><strong>Query: {{ c.query }}</strong></p>
 <h2>Overview:</h2>
+<h3>Context of the enquiry:</h3>
 <p><font color="#0000FF"><b>Initial Hexagram: {{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
 <p><font color="#0000FF">{{ c.initial_desc }}</font></p>
-<p><font color="#800080"><b>Mirror Hexagram: {{ c.mirror }} {{ c.mirror_name }} ({{ c.mirror_type }})</b></font></p>
+<p><font color="#800080"><b>Mediating Hexagram: {{ c.mirror }} {{ c.mirror_name }} ({{ c.mirror_type }})</b></font></p>
 <p><font color="#800080">{{ c.mirror_desc }}</font></p>
 {% endfor %}
 
 {% if line_result %}
     {% for c in line_result %}
         {% if forloop.first %}
+            <h3>Related to the enquiry:</h3>
             <p><font color="#008000"><b>Resultant Hexagram: {{ c.result }} {{ c.result_name }}</b></font></p>
             <p><font color="#008000">{{ c.result_desc }}</font></p>
             <h2>Lines:</h2>
+            <h3>Specific pronouncements within the context of the enquiry:</h3>
             <ul>
         {% endif %}
         <li>
@@ -23,10 +26,10 @@
         <p><font color="#708090"><b>Context {{ c.context }}:</b> <i>{{ c.context_name }} ({{ c.context_desc }})</i></font></p>
         <p><font color="#0000FF"><b>Translation:</b> {{ c.line_trans }}</font></p>
         <p><font color="#0000FF"><b>Commentary:</b> {{ c.line_comm }}</font></p>
-        <h4>Mirror Line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h4>
-        <p><font color="#708090"><b>Mirror Context {{ c.m_context }}:</b> <i>{{ c.m_context_name }} ({{ c.m_context_desc }})</i></font></p>
-        <p><font color="#800080"><b>Mirror Translation:</b> {{ c.m_trans }}</font></p>
-        <p><font color="#800080"><b>Mirror Commentary:</b> {{ c.m_comm }}</font></p>
+        <h4>Mediating Line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h4>
+        <p><font color="#708090"><b>Mediating Context {{ c.m_context }}:</b> <i>{{ c.m_context_name }} ({{ c.m_context_desc }})</i></font></p>
+        <p><font color="#800080"><b>Mediating Translation:</b> {{ c.m_trans }}</font></p>
+        <p><font color="#800080"><b>Mediating Commentary:</b> {{ c.m_comm }}</font></p>
         </li>
     {% endfor %}
 </ul>
