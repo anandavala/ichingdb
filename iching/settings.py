@@ -27,7 +27,7 @@ with open('/home/ichingdb/secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ichingdb.pythonanywhere.com']
 
 
 # Application definition
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'iching.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ichingdb',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'ichingdb$ichingdb',
+        'USER': 'ichingdb',
+        'PASSWORD': 'ICisit67*',
+        'HOST': 'ichingdb.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }

@@ -1,5 +1,6 @@
 <h1>Consultation {{ cid }}:</h1>
-<p><a href="{% url 'ichingdb:update' cid %}">Update</a> . . . <a href="{% url 'ichingdb:delete' cid %}">Delete</a> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p>
+<!-- <p><a href="{% url 'ichingdb:update' cid %}">Update</a> . . . <a href="{% url 'ichingdb:delete' cid %}">Delete</a> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p> -->
+<p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p>
 {% for c in simple_result %}
 <p><strong>Query: {{ c.query }}</strong></p>
 <h2>Overview:</h2>
@@ -22,7 +23,7 @@
         <p><font color="#708090"><b>Context {{ c.context }}:</b> <i>{{ c.context_name }} ({{ c.context_desc }})</i></font></p>
         <p><font color="#0000FF"><b>Translation:</b> {{ c.line_trans }}</font></p>
         <p><font color="#0000FF"><b>Commentary:</b> {{ c.line_comm }}</font></p>
-        <h4>Mirror Line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h4> 
+        <h4>Mirror Line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h4>
         <p><font color="#708090"><b>Mirror Context {{ c.m_context }}:</b> <i>{{ c.m_context_name }} ({{ c.m_context_desc }})</i></font></p>
         <p><font color="#800080"><b>Mirror Translation:</b> {{ c.m_trans }}</font></p>
         <p><font color="#800080"><b>Mirror Commentary:</b> {{ c.m_comm }}</font></p>

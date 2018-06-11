@@ -1,6 +1,7 @@
 <h1>I Ching DB</h1>
 <h3><a href="{% url 'ichingdb:random' %}">Randomly Generate a Hexagram</a></h3>
-<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>
+<h3><strike>Manually Enter a Hexagram</strike></h3>
+<!--<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>-->
 {% if consultation_list %}
 <h3>Past Consultations</h3>
     <ul>
@@ -11,3 +12,10 @@
 {% else %}
     <p>No consultations are available.</p>
 {% endif %}
+<p></p>
+<p></p>
+<h1>About</h1>
+<p>This is a prototype of a new "I Ching Engine". The front-end website is deliberately minimal, showing only the core functionality. This can be customised in the future.</p>
+<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple MySQL database and Django to interface this with the web.</p>
+<p>This work is unlicensed and free to use and adapt in any way you see fit.</p>
+<p>The source files can be found <a href="https://github.com/anandavala/ichingdb/">here</a>.</p>
