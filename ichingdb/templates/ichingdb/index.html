@@ -2,27 +2,28 @@
 <p><strong>May you find insight and inspiration through the I Ching and may this tool help you!</strong></p>
 <p>More information:</p>
 <ul>
-<li><a href="https://www.quora.com/What-use-is-the-I-Ching/answer/John-Ringland" target="_blank">What use is the I Ching?</a></li>
-<li><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></li>
+<li><p><a href="https://www.quora.com/What-use-is-the-I-Ching/answer/John-Ringland" target="_blank">What use is the I Ching?</a></p></li>
+<li><p><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></p></li>
+<li><p><a href="#About">About this website and the new technology behind it...</a></p></li>
 </ul>
-<h3><a href="{% url 'ichingdb:random' %}">Randomly Generate a Hexagram</a></h3>
-<h3><strike>Manually Enter a Hexagram</strike></h3>
+<h3><a href="{% url 'ichingdb:random' %}">Consult the I Ching</a></h3>
+<h3><strike>Manually Enter a Consultation</strike></h3>
 <!--<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>-->
 {% if consultation_list %}
 <h3>Past Consultations</h3>
     <ul>
     {% for c in consultation_list %}
-        <li><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.query }}</a></li>
+        <li><p><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.consultation_id }}:  {{ c.query }}</a></p></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No consultations are available.</p>
 {% endif %}
-<h1>About</h1>
+<h1><a name="About">About</h1>
 <p>This is a minimal prototype of a new "I Ching engine". Just ask a question and it will assemble a complex reading for you.</p>
 <p>The front-end website is deliberately minimal, showing only the core functionality. This can be customised in the future.</p>
-<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple MySQL database with a schema that encodes the structure of the I Ching and the associated text fragments.</p>
-<p>This enables one to perform complex readings of the I Ching with ease. A single SQL query pulls together all the associated text fragments, which are then formatted into a 'reading' using Django to interface with the web.</p>
+<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple relational database (MySQL) with a schema that encodes the structure of the I Ching and the associated text fragments.</p>
+<p>This enables one to perform complex readings of the I Ching with ease. SQL queries pulls together all the associated text fragments, which are then formatted into a 'reading' using Django to interface with the web.</p>
 <p>The prototype has no user-access controls, hence on the demo website updating and deleting are disabled as well as manual hexagrams.</p>
 <p>Thus all consultations are randomly generated and remain part of the archive, however there is no identifying information stored along with them.</p>
 <p>This growing archive is an anonymous indicator of the prevailing questions on people's minds and the corresponding responses from the I Ching.</p>
