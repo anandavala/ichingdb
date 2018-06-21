@@ -9,14 +9,14 @@
 <h1>Consultation {{ cid }}:</h1>
 <h2>Query:</h2>
 <p><strong>{{ c.query }}</strong></p>
-<p>Note: This is not a complete reading; there is only a one paragraph summary of each hexagram. This is just a prototype, so for now please refer to a complete text for more details on the hexagrams.</p>
+<p>Note: This is not a complete reading; there are only a couple of paragraphs to summarise each hexagram. This is just a prototype, so for now please refer to a complete text for more details on the hexagrams.</p>
 <h2>Overview:</h2>
 <h3>The context of the enquiry is:</h3>
 <p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
-<p><font color="#0000FF">{{ c.initial_desc }}</font></p>
+<p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
 <h3>There is interplay with:</h3>
 <p><font color="#800080"><b>{{ c.mirror }} {{ c.mirror_name }} ({{ c.mirror_type }})</b></font></p>
-<p><font color="#800080">{{ c.mirror_desc }}</font></p>
+<p><font color="#800080">{{ c.mirror_gnostic }}.. {{ c.mirror_desc }}</font></p>
 {% endfor %}
 
 {% if line_result %}
@@ -24,7 +24,7 @@
         {% if forloop.first %}
             <h3>The related factors are:</h3>
             <p><font color="#008000"><b>{{ c.result }} {{ c.result_name }}</b></font></p>
-            <p><font color="#008000">{{ c.result_desc }}</font></p>
+            <p><font color="#008000">{{ c.result_gnostic }}.. {{ c.result_desc }}</font></p>
         {% endif %}
     {% endfor %}
 {% endif %}
@@ -32,7 +32,7 @@
 {% for c in simple_result %}
 <h3>The hidden possibilities in the situation are:</h3>
 <p><font color="#CD5C5C"><b>{{ c.hidden }} {{ c.h_name }}</b></font></p>
-<p><font color="#CD5C5C">{{ c.h_desc }}</font></p>
+<p><font color="#CD5C5C">{{ c.h_gnostic }}.. {{ c.h_desc }}</font></p>
 {% endfor %}
 
 {% if line_result %}
@@ -45,13 +45,13 @@
         <li>
         <h3>Line {{ c.line }}: <small>{% for c in simple_result %} ({{ c.initial_type }}) {% endfor %} {{ c.line_name }} ({{ c.line_desc }})</small></h3>
         <h4>In the context of:</h4>
-        <p><font color="#708090"><b>{{ c.context }} {{ c.context_name }}:</b> <i>{{ c.context_desc }}</i></font></p>
+        <p><font color="#708090"><b>{{ c.context }} {{ c.context_name }}:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></font></p>
         <h4>The pronouncement is:</h4>
         <p><font color="#0000FF">{{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
         <h3>There is interplay with line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h3>
         <h4>In the context of:</h4>
-        <p><font color="#708090"><b>{{ c.m_context }} {{ c.m_context_name }}:</b> <i>{{ c.m_context_desc }}</i></font></p>
+        <p><font color="#708090"><b>{{ c.m_context }} {{ c.m_context_name }}:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <h4>The pronouncement is:</h4>
         <p><font color="#800080">{{ c.m_trans }}</font></p>
         <p><font color="#800080">{{ c.m_comm }}</font></p>
