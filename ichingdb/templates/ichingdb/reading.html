@@ -8,9 +8,8 @@
 {% for c in simple_result %}
 <h1>Consultation {{ cid }}:</h1>
 <h2>Query:</h2>
-<p><strong>{{ c.query }}</strong></p>
+<h4>{{ c.query }}</h4>
 <p>Note: This is not a complete reading; there are only a couple of paragraphs to summarise each hexagram. This is just a prototype, so for now please refer to a complete text for more details on the hexagrams.</p>
-<h2>Overview:</h2>
 <h3>The context of the enquiry is:</h3>
 <p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
@@ -22,23 +21,6 @@
 {% if line_result %}
     {% for c in line_result %}
         {% if forloop.first %}
-            <h3>The related factors are:</h3>
-            <p><font color="#008000"><b>{{ c.result }} {{ c.result_name }}</b></font></p>
-            <p><font color="#008000">{{ c.result_gnostic }}.. {{ c.result_desc }}</font></p>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-
-{% for c in simple_result %}
-<h3>The hidden possibilities in the situation are:</h3>
-<p><font color="#CD5C5C"><b>{{ c.hidden }} {{ c.h_name }}</b></font></p>
-<p><font color="#CD5C5C">{{ c.h_gnostic }}.. {{ c.h_desc }}</font></p>
-{% endfor %}
-
-{% if line_result %}
-    {% for c in line_result %}
-        {% if forloop.first %}
-            <h2>Lines:</h2>
             <h3>Specific pronouncements within the context of the enquiry:</h3>
             <ul>
         {% endif %}
@@ -56,9 +38,29 @@
         <p><font color="#800080">{{ c.m_trans }}</font></p>
         <p><font color="#800080">{{ c.m_comm }}</font></p>
         </li>
+        {% if forloop.last %}
+            </ul>
+            <h3>The related factors are: <small>(Use your intuition to decide how this is related to the enquiry.)</small></h3>
+            <p><font color="#008000"><b>{{ c.result }} {{ c.result_name }}</b></font></p>
+            <p><font color="#008000">{{ c.result_gnostic }}.. {{ c.result_desc }}</font></p>
+            <h3>The inner change operator is: <small>(The inner transformative aspects of change. An inner stance or strategy towards the inner world.)</small></h3>
+            <p><font color="#663300"><b>{{ c.innerop }} {{ c.i_name }}</b></font></p>
+            <p><font color="#663300">{{ c.i_gnostic }}.. {{ c.i_desc }}</font></p>
+            <h3>The outer change operator is: <small>(The outer transformative aspects of change. An outer stance or strategy towards the outer world.)</small></h3>
+            <p><font color="#663300"><b>{{ c.outerop }} {{ c.o_name }}</b></font></p>
+            <p><font color="#663300">{{ c.o_gnostic }}.. {{ c.o_desc }}</font></p>
+        {% endif %}
     {% endfor %}
-</ul>
 {% endif %}
+
+{% for c in simple_result %}
+<h3>The hidden possibilities in the situation are:</h3>
+<p><font color="#CD5C5C"><b>{{ c.hidden }} {{ c.h_name }}</b></font></p>
+<p><font color="#CD5C5C">{{ c.h_gnostic }}.. {{ c.h_desc }}</font></p>
+<h3>The shadow site is: <small>(What is counter-indicated in your situation, covered by a negative screen that is blocking transformative energy.)</small></h3>
+<p><font color="#cc0000"><b>{{ c.shadow }} {{ c.s_name }}</b></font></p>
+<p><font color="#cc0000">{{ c.s_gnostic }}.. {{ c.s_desc }}</font></p>
+{% endfor %}
 
 {% for c in simple_result %}
 <h3>Notes:</h3>
