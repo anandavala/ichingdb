@@ -5,14 +5,14 @@
 <ul>
 <li><p><a href="https://www.quora.com/What-use-is-the-I-Ching/answer/John-Ringland" target="_blank">What use is the I Ching?</a></p></li>
 <li><p><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></p></li>
-<li><p><a href="#About">About this website and the new technology behind it...</a></p></li>
+<li><p><a href="../#About">About this website and the new technology behind it...</a></p></li>
 </ul>
 
 {% for c in simple_result %}
 <h1>Consultation {{ cid }}:</h1>
 <h2>Query:</h2>
 <h4>{{ c.query }}</h4>
-<p>Note: This is not a complete reading; there are only a couple of paragraphs to summarise each hexagram. This is just a prototype, so for now please refer to a complete text for more details on the hexagrams.</p>
+<p>Note: This is a full reading but there is only one paragraph to summarise each hexagram. Please refer to a more complete text, such as <a href="http://inthefamilyway.org/iching/hexagrams/">I Ching: Mothering Change</a>, for more details on the hexagrams.</p>
 <h3>The context of the enquiry is:</h3>
 <p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
