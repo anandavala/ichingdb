@@ -12,6 +12,8 @@
 <h1>Consultation {{ cid }}:</h1>
 <h2>Query:</h2>
 <h4>{{ c.query }}</h4>
+<h2>Response:</h2>
+<h4>{{ c.initial }} {{ c.initial_name }} {% if line_result %} {% for l in line_result %} {% if forloop.first %} &rarr; {{ l.result }} {{ l.result_name }} {% endif %} {% endfor %} {% endif %}</h4>
 <p>Note: This is a full reading but there is only one paragraph to summarise each hexagram. Please refer to a more complete text, such as <a href="http://inthefamilyway.org/iching/hexagrams/" target="_blank">I Ching: Mothering Change</a>, for more details on the hexagrams.</p>
 <h3>The context of the enquiry is:</h3>
 <p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
