@@ -16,10 +16,10 @@
 <h4>{{ c.initial }} {{ c.initial_name }} {% if line_result %} {% for l in line_result %} {% if forloop.first %} &rarr; {{ l.result }} {{ l.result_name }} {% endif %} {% endfor %} {% endif %}</h4>
 <p>Note: This is a full reading but there is only one paragraph to summarise each hexagram. Please refer to a more complete text, such as <a href="http://inthefamilyway.org/iching/hexagrams/" target="_blank">I Ching: Mothering Change</a>, for more details on the hexagrams.</p>
 <h3>The context of the enquiry is:</h3>
-<p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} ({{ c.initial_type }})</b></font></p>
+<p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} (Inspiration)</b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
 <h3>There is interplay with:</h3>
-<p><font color="#800080"><b>{{ c.mirror }} {{ c.mirror_name }} ({{ c.mirror_type }})</b></font></p>
+<p><font color="#800080"><b>{{ c.mirror }} {{ c.mirror_name }} (Manifestation)</b></font></p>
 <p><font color="#800080">{{ c.mirror_gnostic }}.. {{ c.mirror_desc }}</font></p>
 {% endfor %}
 
@@ -30,11 +30,11 @@
             <ul>
         {% endif %}
         <li>
-        <h3>Line {{ c.line }}: <small>{% for c in simple_result %} ({{ c.initial_type }}) {% endfor %} {{ c.line_name }} ({{ c.line_desc }})</small></h3>
+        <h3>Line {{ c.line }}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
         <p><strong>In the context of:</strong> <font color="#708090"><b>{{ c.context }} {{ c.context_name }}:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></font></p>
         <p><strong>The pronouncement is:</strong> <font color="#0000FF">{{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
-        <h3>There is interplay with line {{ c.m_line }}: <small>{% for c in simple_result %} ({{ c.mirror_type }}) {% endfor %} {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h3>
+        <h3>There is interplay with line {{ c.m_line }}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h3>
         <p><strong>In the context of:</strong> <font color="#708090"><b>{{ c.m_context }} {{ c.m_context_name }}:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <p><strong>The pronouncement is:</strong> <font color="#800080">{{ c.m_trans }}</font></p>
         <p><font color="#800080">{{ c.m_comm }}</font></p>
