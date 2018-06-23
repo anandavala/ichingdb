@@ -32,11 +32,11 @@
             <ul>
         {% endif %}
         <li>
-        <h3>Line {{ c.line }}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
+        <h3>Line {{ c.line }} of {% for s in simple_result %} {{ s.initial }} {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
         <p><strong>In the context of:</strong> <font color="#708090"><b>{{ c.context }} {{ c.context_name }}:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></font></p>
         <p><strong>The pronouncement is:</strong> <font color="#0000FF">{{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
-        <h3>There is interplay with line {{ c.m_line }}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h3>
+        <h3>There is interplay with line {{ c.m_line }} of {% for s in simple_result %} {{ s.mirror }} {% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></h3>
         <p><strong>In the context of:</strong> <font color="#708090"><b>{{ c.m_context }} {{ c.m_context_name }}:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <p><strong>The pronouncement is:</strong> <font color="#800080">{{ c.m_trans }}</font></p>
         <p><font color="#800080">{{ c.m_comm }}</font></p>
