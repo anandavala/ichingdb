@@ -13,7 +13,7 @@
 <h2>Query:</h2>
 <h4>{{ c.query }}</h4>
 <h2>Response:</h2>
-<h4>{{ c.initial }} {{ c.initial_name }} {% if line_result %} {% for l in line_result %} {% if forloop.first %} &rarr; {{ l.result }} {{ l.result_name }} {% endif %} {% endfor %} {% endif %}</h4>
+<h4>{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</h4>
 <h3>The context of the enquiry is:</h3>
 <p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} (Inspiration)</b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
