@@ -15,11 +15,8 @@
 <h2>Response:</h2>
 <h4>{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</h4>
 <h3>The context of the enquiry is:</h3>
-<p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }} (Inspiration)</b></font></p>
+<p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }}</b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
-<h3>There is interplay with: <small>(The mirror world.)</small></h3>
-<p><font color="#800080"><b>{{ c.mirror }} {{ c.mirror_name }} (Manifestation)</b></font></p>
-<p><font color="#800080">{{ c.mirror_gnostic }}.. {{ c.mirror_desc }}</font></p>
 {% endfor %}
 
 {% if line_result %}
@@ -43,6 +40,11 @@
         </li>
         {% if forloop.last %}
             </ul>
+            {% for s in simple_result %}
+            <h3>The interplay lines were in: <small>(The mirror hexagram.)</small></h3>
+            <p><font color="#800080"><b>{{ s.mirror }} {{ s.mirror_name }}</b></font></p>
+            <p><font color="#800080">{{ s.mirror_gnostic }}.. {{ s.mirror_desc }}</font></p>
+            {% endfor %}
             <h3>The inner change operator is: <small>(The inner transformative aspects of change. An inner stance or strategy towards the inner world.)</small></h3>
             <p><font color="#666633"><b>{{ c.innerop }} {{ c.i_name }}</b></font></p>
             <p><font color="#666633">{{ c.i_gnostic }}.. {{ c.i_desc }}</font></p>
