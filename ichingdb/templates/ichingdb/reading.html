@@ -1,5 +1,5 @@
 <!-- <p><a href="{% url 'ichingdb:update' cid %}">Update</a> . . . <a href="{% url 'ichingdb:delete' cid %}">Delete</a> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p> -->
-<p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a> . . . <a href="{% url 'ichingdb:random' %}">Consult the I Ching</a></p>
+<p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a> . . . <a href="{% url 'ichingdb:random' %}">Consult the I Ching</a> . . . <a href="{% url 'ichingdb:explore' %}">Explore the I Ching</a></p>
 <p><i>"The I Ching is not magic; it is science that we don’t understand."</i> ~Terence McKenna</p>
 <p>More information:</p>
 <ul>
@@ -65,10 +65,10 @@
 {% endfor %}
 
 {% for c in simple_result %}
-<h3>Notes:</h3>
-<p>{{ c.notes }}</p>
-<h3>Conclusion:</h3>
-<p>{{ c.conclusion }}</p>
+<h3>Notes: (Optionally record your thoughts and impressions.)</h3>
+<p>Disabled in prototype.<!--{{ c.notes }}--></p>
+<h3>Conclusion: (Optionally record your interpretation of the reading.)</h3>
+<p>Disabled in prototype.<!--{{ c.conclusion }}--></p>
 {% endfor %}
 
 <p>Note: This is a full reading but there is only one paragraph to summarise each hexagram. Please refer to a more complete text, such as <a href="http://inthefamilyway.org/iching/hexagrams/" target="_blank">I Ching: Mothering Change</a>, for more details on the hexagrams.</p>
