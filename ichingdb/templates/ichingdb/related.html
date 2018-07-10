@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>table, th, td {
+    border: 1px solid black; 
+    border-collapse: collapse; 
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<h1>Find hexagrams related to a particular hexagram.</h1>
+<p>Explore the space of possible evolutions from a given state.</p>
+<p>Valid values below are an integer from 1 to 64 (initial hexagram) & a list of integers between 0 and 6 (list of step lengths to include).</p>
+<p>A step length is the number of changing lines involved in a transition.</p>
+<form method="POST" action="">
+{% csrf_token %}
+<table>
+<tr><th>Initial Hexagram</th><th>Step Lengths</th></tr>
+<tr><td><input type="text" name="initial" value="1"></td><td><input type="text" name="levels" value="0,1,2,3,4,5,6"></td></tr>
+</table>
+<p><button type="submit">Related</button></p>
+</form>
+<p>Return to <a href="{% url 'ichingdb:index' %}">Index</a></p>
+<h2>Example searches:</h2>
+<ul>
+<li>
+<p>Find all readings with initial hexagram 47 Confining and exactly 2 or 3 changing lines.</p>
+<table>
+<tr><th>Initial</th><th>Levels</th></tr>
+<tr><td>47</td><td>2,3</td></tr>
+</table>
+</li>
+<li>
+<p>Find all readings with initial hexagram 2 Field and any number of changing lines.</p>
+<table>
+<tr><th>Initial</th><th>Levels</th></tr>
+<tr><td>2</td><td>0,1,2,3,4,5,6</td></tr>
+</table>
+</li>
+<li>
+<p>Find all readings with initial hexagram 15 Humbling and exactly 1 changing line.</p>
+<table>
+<tr><th>Initial</th><th>Levels</th></tr>
+<tr><td>15</td><td>1</td></tr>
+</table>
+</li>
+</ul>
+</body>
+

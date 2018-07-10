@@ -20,4 +20,6 @@ urlpatterns = [
     path('explore/', views.explore, name='explore'),
     # ex: /ichingdb/5/10/
     path('<int:hid>/<int:rid>/', views.reading2, name='reading2'),
+    # ex: /ichingdb/related
+    path('related/', views.related, name='related'),
 ]

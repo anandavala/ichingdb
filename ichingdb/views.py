@@ -56,6 +56,24 @@ def explore(request):
     else:
         return render(request, 'ichingdb/explore.html')
 
+def related(request):
+    if request.method == 'POST':
+        initial = int(request.POST.get('initial', None))
+        levels = request.POST.get('levels', None)
+        related_query = "SELECT DISTINCT lc.line_changes_id, h.hexagram_id AS h_id, h.name AS h_name, ' ', lc.line_6 as l6, lc.line_5 as l5, lc.line_4 as l4, lc.line_3 as l3, lc.line_2 as l2, lc.line_1 as l1, ' ', lcr.chng_6 as c6, lcr.chng_5 as c5, lcr.chng_4 as c4, lcr.chng_3 as c3, lcr.chng_2 as c2, lcr.chng_1 as c1, ' ', lcr.chng_6 + lcr.chng_5 + lcr.chng_4 + lcr.chng_3 + lcr.chng_2 + lcr.chng_1 AS len, ' ', rel.hexagram_id AS r_id, rel.name AS r_name FROM hexagram AS h, hexagram AS rel, line_changes AS lc, line_changes AS lcr WHERE lc.chng_1 = 0 AND lc.chng_2 = 0 AND lc.chng_3 = 0 AND lc.chng_4 = 0 AND lc.chng_5 = 0 AND lc.chng_6 = 0 AND lc.hexagram = h.hexagram_id AND lc.line_1 = lcr.line_1 AND lc.line_2 = lcr.line_2 AND lc.line_3 = lcr.line_3 AND lc.line_4 = lcr.line_4 AND lc.line_5 = lcr.line_5 AND lc.line_6 = lcr.line_6 AND lcr.chng_6 + lcr.chng_5 + lcr.chng_4 + lcr.chng_3 + lcr.chng_2 + lcr.chng_1 in (%s) AND lcr.hexagram = rel.hexagram_id AND h.hexagram_id = %d order by len, l6, l5, l4, l3, l2, l1, c6, c5, c4, c3, c2, c1;" % (levels, initial)
+        related_result = LineChanges.objects.raw(related_query)
+        html=""
+        length = 0
+        if related_result:
+            for i, r in enumerate(related_result):
+                html += "<tr><td>%d</td><td>%d %s</td><td>%d%d%d%d%d%d</td><td>%d%d%d%d%d%d</td><td>%d %s</td><td>%d</td><td><a href=\"/ichingdb/%d/%d/\">Reading</a></td></tr>" % (i+1, r.h_id, r.h_name, r.l6, r.l5, r.l4, r.l3, r.l2, r.l1, r.c6, r.c5, r.c4, r.c3, r.c2, r.c1, r.r_id, r.r_name, r.len, r.h_id, r.r_id)
+                length = i+1
+        header="<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black; border-collapse: collapse; padding: 5px;}</style></head><body><h1>Inputs</h1><table><tr><th>Initial</th><th>Levels</th></tr><tr><td>%s</td><td>%s</td></tr></table><h1>%d Matches:</h1><table><tr><th>idx</th><th>Initial</th><th>Lines</th><th>Changes</th><th>Related</th><th>Len</th><th>Link</th></tr>" % (initial, levels, length)
+        footer = "</table></body></html>"
+        return HttpResponse(header + html + footer)
+    else:
+        return render(request, 'ichingdb/related.html')
+
 class ConsultationCreate(CreateView):
     model = Consultation
     fields = ['query', 'line_1', 'chng_1', 'line_2', 'chng_2', 'line_3', 'chng_3', 'line_4', 'chng_4', 'line_5', 'chng_5', 'line_6', 'chng_6']
