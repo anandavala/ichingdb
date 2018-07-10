@@ -10,7 +10,8 @@
 </head>
 <body>
 <h1>Find readings matching a pattern.</h1>
-<p>Valid values are:</p>
+<p>Explore the space of possible readings then click the link to view the reading.</p>
+<p>Valid values below are:</p>
 <ul>
 <li>'0' &nbsp; &nbsp; &nbsp;line = yin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or &nbsp; &nbsp; &nbsp;change = stationary</li>
 <li>'1' &nbsp; &nbsp; &nbsp;line = yang &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;or &nbsp; &nbsp; &nbsp;change = changing</li>
@@ -27,25 +28,37 @@
 <tr><td>2</td><td><input type="text" name="l2" value="0,1"></td><td><input type="text" name="c2" value="0,1"></td></tr>
 <tr><td>1</td><td><input type="text" name="l1" value="0,1"></td><td><input type="text" name="c1" value="0,1"></td></tr>
 </table>
-<button type="submit">Explore</button>
+<p><button type="submit">Explore</button></p>
 </form>
 <p>Return to <a href="{% url 'ichingdb:index' %}">Index</a></p>
 <h2>Example patterns:</h2>
 <ul>
 <li>
-<p>Find a particular reading 12.1.2.3 &rightarrow; 1</p>
+<p>Find the stages via which 12 Obstruction &rightarrow; 1 Force</p>
 <table>
 <tr><th>Lines</th><th>Changes</th></tr>
 <tr><td>1</td><td>0</td></tr>
 <tr><td>1</td><td>0</td></tr>
 <tr><td>1</td><td>0</td></tr>
-<tr><td>0</td><td>1</td></tr>
-<tr><td>0</td><td>1</td></tr>
-<tr><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>0,1</td></tr>
+<tr><td>0</td><td>0,1</td></tr>
+<tr><td>0</td><td>0,1</td></tr>
 </table>
 </li>
 <li>
-<p>Find all readings with a changing yang in the first row.</p>
+<p>Find all stationary hexagrams with shake (001) in the lower trigram.</p>
+<table>
+<tr><th>Lines</th><th>Changes</th></tr>
+<tr><td>0,1</td><td>0</td></tr>
+<tr><td>0,1</td><td>0</td></tr>
+<tr><td>0,1</td><td>0</td></tr>
+<tr><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>0</td></tr>
+</table>
+</li>
+<li>
+<p>Find all hexagrams with a changing yang in the first row and stationary otherwise.</p>
 <table>
 <tr><th>Lines</th><th>Changes</th></tr>
 <tr><td>0,1</td><td>0</td></tr>
