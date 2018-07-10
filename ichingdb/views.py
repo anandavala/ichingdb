@@ -74,6 +74,26 @@ def related(request):
     else:
         return render(request, 'ichingdb/related.html')
 
+def paths(request):
+    if request.method == 'POST':
+        steps = request.POST.get('steps', None)
+        initial = int(request.POST.get('initial', None))
+        waypoint = int(request.POST.get('waypoint', None))
+        atstep = int(request.POST.get('atstep', None))
+        paths_query = "SELECT DISTINCT lc1.line_changes_id, h1.hexagram_id AS h1_id, h1.name AS h1_name, h2.hexagram_id AS h2_id, h2.name AS h2_name, h3.hexagram_id AS h3_id, h3.name AS h3_name, h4.hexagram_id AS h4_id, h4.name AS h4_name, h5.hexagram_id AS h5_id, h5.name AS h5_name, h6.hexagram_id AS h6_id, h6.name AS h6_name, h7.hexagram_id AS h7_id, h7.name AS h7_name FROM hexagram AS h1, hexagram AS h2, hexagram AS h3, hexagram AS h4, hexagram AS h5, hexagram AS h6, hexagram AS h7, line_changes AS lc1, line_changes AS lc2, line_changes AS lc3, line_changes AS lc4, line_changes AS lc5, line_changes AS lc6, line_changes AS lc7, line_changes AS lc8, line_changes AS lc9, line_changes AS lc10, line_changes AS lc11, line_changes AS lc12 WHERE lc1.chng_1 = 0 AND lc1.chng_2 = 0 AND lc1.chng_3 = 0 AND lc1.chng_4 = 0 AND lc1.chng_5 = 0 AND lc1.chng_6 = 0 AND lc1.hexagram = h1.hexagram_id AND lc1.line_1 = lc2.line_1 AND lc1.line_2 = lc2.line_2 AND lc1.line_3 = lc2.line_3 AND lc1.line_4 = lc2.line_4 AND lc1.line_5 = lc2.line_5 AND lc1.line_6 = lc2.line_6 AND lc2.chng_6 + lc2.chng_5 + lc2.chng_4 + lc2.chng_3 + lc2.chng_2 + lc2.chng_1 in (%s) AND lc2.hexagram = h2.hexagram_id AND lc3.chng_1 = 0 AND lc3.chng_2 = 0 AND lc3.chng_3 = 0 AND lc3.chng_4 = 0 AND lc3.chng_5 = 0 AND lc3.chng_6 = 0 AND lc3.hexagram = h2.hexagram_id AND lc3.line_1 = lc4.line_1 AND lc3.line_2 = lc4.line_2 AND lc3.line_3 = lc4.line_3 AND lc3.line_4 = lc4.line_4 AND lc3.line_5 = lc4.line_5 AND lc3.line_6 = lc4.line_6 AND lc4.chng_6 + lc4.chng_5 + lc4.chng_4 + lc4.chng_3 + lc4.chng_2 + lc4.chng_1 in (%s) AND lc4.hexagram = h3.hexagram_id AND lc5.chng_1 = 0 AND lc5.chng_2 = 0 AND lc5.chng_3 = 0 AND lc5.chng_4 = 0 AND lc5.chng_5 = 0 AND lc5.chng_6 = 0 AND lc5.hexagram = h3.hexagram_id AND lc5.line_1 = lc6.line_1 AND lc5.line_2 = lc6.line_2 AND lc5.line_3 = lc6.line_3 AND lc5.line_4 = lc6.line_4 AND lc5.line_5 = lc6.line_5 AND lc5.line_6 = lc6.line_6 AND lc6.chng_6 + lc6.chng_5 + lc6.chng_4 + lc6.chng_3 + lc6.chng_2 + lc6.chng_1 in (%s) AND lc6.hexagram = h4.hexagram_id AND lc7.chng_1 = 0 AND lc7.chng_2 = 0 AND lc7.chng_3 = 0 AND lc7.chng_4 = 0 AND lc7.chng_5 = 0 AND lc7.chng_6 = 0 AND lc7.hexagram = h4.hexagram_id AND lc7.line_1 = lc8.line_1 AND lc7.line_2 = lc8.line_2 AND lc7.line_3 = lc8.line_3 AND lc7.line_4 = lc8.line_4 AND lc7.line_5 = lc8.line_5 AND lc7.line_6 = lc8.line_6 AND lc8.chng_6 + lc8.chng_5 + lc8.chng_4 + lc8.chng_3 + lc8.chng_2 + lc8.chng_1 in (%s) AND lc8.hexagram = h5.hexagram_id AND lc9.chng_1 = 0 AND lc9.chng_2 = 0 AND lc9.chng_3 = 0 AND lc9.chng_4 = 0 AND lc9.chng_5 = 0 AND lc9.chng_6 = 0 AND lc9.hexagram = h5.hexagram_id AND lc9.line_1 = lc10.line_1 AND lc9.line_2 = lc10.line_2 AND lc9.line_3 = lc10.line_3 AND lc9.line_4 = lc10.line_4 AND lc9.line_5 = lc10.line_5 AND lc9.line_6 = lc10.line_6 AND lc10.chng_6 + lc10.chng_5 + lc10.chng_4 + lc10.chng_3 + lc10.chng_2 + lc10.chng_1 in (%s) AND lc10.hexagram = h6.hexagram_id AND lc11.chng_1 = 0 AND lc11.chng_2 = 0 AND lc11.chng_3 = 0 AND lc11.chng_4 = 0 AND lc11.chng_5 = 0 AND lc11.chng_6 = 0 AND lc11.hexagram = h6.hexagram_id AND lc11.line_1 = lc12.line_1 AND lc11.line_2 = lc12.line_2 AND lc11.line_3 = lc12.line_3 AND lc11.line_4 = lc12.line_4 AND lc11.line_5 = lc12.line_5 AND lc11.line_6 = lc12.line_6 AND lc12.chng_6 + lc12.chng_5 + lc12.chng_4 + lc12.chng_3 + lc12.chng_2 + lc12.chng_1 in (%s) AND lc12.hexagram = h7.hexagram_id AND h1.hexagram_id = %d AND %d in (h%d.hexagram_id) order by h1_id, h2_id, h3_id, h4_id, h5_id, h6_id, h7_id;" % (steps, steps, steps, steps, steps, steps, initial, waypoint, atstep+1)
+        paths_result = LineChanges.objects.raw(paths_query)
+        html=""
+        length = 0
+        if paths_result:
+            for i, r in enumerate(paths_result):
+                html += "<tr><td>%d</td><td>%d %s</td><td>%d %s</td><td>%d %s</td><td>%d %s</td><td>%d %s</td><td>%d %s</td><td>%d %s</td></tr>" % (i+1, r.h1_id, r.h1_name, r.h2_id, r.h2_name, r.h3_id, r.h3_name, r.h4_id, r.h4_name, r.h5_id, r.h5_name, r.h6_id, r.h6_name, r.h7_id, r.h7_name)
+                length = i+1
+        header="<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black; border-collapse: collapse; padding: 5px;}</style></head><body><h1>Inputs</h1><table><tr><th>Steps</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr><tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr></table><h1>%d Matches:</h1><table><tr><th>idx</th><th>Initial</th><th>Step 1</th><th>Step 2</th><th>Step 3</th><th>Step 4</th><th>Step 5</th><th>Step 6</th></tr>" % (steps, initial, waypoint, atstep, length)
+        footer = "</table></body></html>"
+        return HttpResponse(header + html + footer)
+    else:
+        return render(request, 'ichingdb/paths.html')
+
 class ConsultationCreate(CreateView):
     model = Consultation
     fields = ['query', 'line_1', 'chng_1', 'line_2', 'chng_2', 'line_3', 'chng_3', 'line_4', 'chng_4', 'line_5', 'chng_5', 'line_6', 'chng_6']

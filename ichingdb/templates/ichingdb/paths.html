@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>table, th, td {
+    border: 1px solid black; 
+    border-collapse: collapse; 
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<h1>Find paths between hexagrams.</h1>
+<p>Explore the space of possible paths. Paths with step 'size', starting from 'initial', passing through 'waypoint', at step astStep.</p>
+<form method="POST" action="">
+{% csrf_token %}
+<table>
+<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><td><input type="text" name="steps" value="1"></td><td><input type="text" name="initial" value="12"></td><td><input type="text" name="waypoint" value="11"></td><td><input type="text" name="atstep" value="6"></td></tr>
+</table>
+<p>This may take a minute...</p>
+<p><button type="submit">Paths</button></p>
+</form>
+<p>Return to <a href="{% url 'ichingdb:index' %}">Index</a></p>
+<h2>Example searches:</h2>
+<ul>
+<li>
+<p>Find all paths with step size 1, starting at 2 Field and passing through 1 Force atStep 6.</p>
+<table>
+<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><td>1</td><td>2</td><td>1</td><td>6</td></tr>
+</table>
+</li>
+<li>
+<p>Find all paths with step size 1, starting at 12 Field and passing through 11 Force atStep 6.</p>
+<table>
+<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><td>1</td><td>12</td><td>11</td><td>6</td></tr>
+</table>
+</li>
+<li>
+<p>Find all paths with step size 1, starting at 47 Confining and passing through 11 Force atStep 6.</p>
+<table>
+<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><td>1</td><td>47</td><td>11</td><td>3</td></tr>
+</table>
+</li>
+</ul>
+</body>
+
