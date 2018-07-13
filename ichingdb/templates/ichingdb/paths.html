@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Find paths between hexagrams.</h1>
-<p>Explore the space of possible paths. Paths with step 'size', starting from 'initial', passing through 'waypoint', at step astStep.</p>
+<p>Explore the space of possible paths with step 'Size', starting from 'Initial', passing through 'Waypoint', at step atStep.</p>
 <form method="POST" action="">
 {% csrf_token %}
 <table>
@@ -31,17 +31,17 @@
 </table>
 </li>
 <li>
-<p>Find all paths with step size 1, starting at 12 Field and passing through 11 Force atStep 6.</p>
+<p>Find all paths with step size 1, starting at 12 Field and passing through 11 Pervading atStep 6.</p>
 <table>
 <tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
 <tr><td>1</td><td>12</td><td>11</td><td>6</td></tr>
 </table>
 </li>
 <li>
-<p>Find all paths with step size 1, starting at 47 Confining and passing through 11 Force atStep 6.</p>
+<p>Find all paths with step size 1, starting at 47 Confining and passing through 60 Articulating atStep 4.</p>
 <table>
 <tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
-<tr><td>1</td><td>47</td><td>11</td><td>3</td></tr>
+<tr><td>1</td><td>47</td><td>60</td><td>4</td></tr>
 </table>
 </li>
 </ul>
