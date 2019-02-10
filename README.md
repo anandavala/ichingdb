@@ -31,8 +31,4 @@ The text fragments included in the database were scraped from the website "I Chi
 
 I have used Steven Karcher's book "Total I Ching: Myths For Change" for many years. I include this text as a sign of respect for his work and out of a desire to provide the best I Ching access to the general public. I only scraped a minimal amount of text and hope there are no copyright issues. If so the text can easily be swapped for another set.
 
-<<<<<<< HEAD
 Enjoy! :)
-=======
-Enjoy! :)
->>>>>>> 1ccedf105ec469876485cdd8d007c57afaaea459
