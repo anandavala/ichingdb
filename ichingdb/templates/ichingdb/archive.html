@@ -1,0 +1,13 @@
+<p><a href="{% url 'ichingdb:index' %}">Index</a></p>
+<h1>Archive of Past Readings</h1>
+{% if consultation_list %}
+    <ul>
+    {% for c in consultation_list %}
+        <li><p><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.consultation_id }}:  {{ c.query }}</a></p></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No consultations are available.</p>
+{% endif %}
+<p>&nbsp;</p>
+<p><a href="{% url 'ichingdb:index' %}">Index</a></p>

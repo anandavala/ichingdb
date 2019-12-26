@@ -1,47 +1,16 @@
 <h1>I Ching DB</h1>
-<p><i>"The I Ching is not magic; it is science that we don’t understand."</i> ~Terence McKenna</p>
-<p><strong>May you find insight and inspiration through the I Ching and may this tool help you!</strong></p>
+<p><strong><i>"The I Ching is not magic; it is science that we don’t understand."</i></strong> ~Terence McKenna</p>
+<p>May you find insight and inspiration through the I Ching and may this tool help you!</p>
+<p>Note: to look up a reading, e.g. 12 &rightarrow; 1 just append "12/1/" to the above URL. Or if there are no changing lines in the reading enter the initial hexagram twice, e.g. "12/12/"</p>
 <h2><a href="{% url 'ichingdb:random' %}">Consult the I Ching</a></h2>
-<h3><a href="{% url 'ichingdb:explore' %}">Explore Possible Readings</a></h3>
-<h3><a href="{% url 'ichingdb:related' %}">Explore Related Hexagrams</a></h3>
-<h3><a href="{% url 'ichingdb:paths' %}">Explore Paths Between Hexagrams</a></h3>
-<p>Note: to look up a reading, e.g. 12 &rightarrow; 1 enter the url "/ichingdb/12/1/"</p>
-<!--<h3><strike>Manually Enter a Consultation</strike></h3>-->
-<!--<h3><a href="{% url 'ichingdb:cast' %}">Manually Enter a Hexagram</a></h3>-->
-<p><b>More information:</b></p>
+<h4><a href="{% url 'ichingdb:archive' %}">Archive of Past Readings</a></h4>
+<h4><a href="{% url 'ichingdb:about' %}">About this website and the new technology behind it</a></h4>
+<h3><b>More information:</b></h3>
 <ul>
 <li><p><a href="https://www.quora.com/What-use-is-the-I-Ching/answer/John-Ringland" target="_blank">What use is the I Ching?</a></p></li>
 <li><p><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></p></li>
-<li><p><a href="#About">About this website and the new technology behind it...</a></p></li>
 </ul>
-{% if consultation_list %}
-<h3>Past Consultations</h3>
-    <ul>
-    {% for c in consultation_list %}
-        <li><p><a href="{% url 'ichingdb:reading' c.consultation_id %}">{{ c.consultation_id }}:  {{ c.query }}</a></p></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No consultations are available.</p>
-{% endif %}
-<h1><a name="About">About</h1>
-<p>I have found the I Ching to be an invaluable source of wisdom and insight. I hope this tool will help make it more accessible to others.</p>
-<p>This is a minimal prototype of a new "I Ching engine". Just ask a question and it will assemble a complex reading for you.</p>
-<p>The front-end website is deliberately minimal, showing only the core functionality. This can be customised in the future.</p>
-<p>The purpose of this website is to exhibit the functionality of the back-end engine, which is a simple relational database (MySQL) with a schema that encodes the structure of the I Ching and the associated text fragments.</p>
-<p>This enables one to perform complex readings of the I Ching with ease. SQL queries pulls together all the associated text fragments, which are then formatted into a 'reading' using Django to interface with the web.</p>
-<p>The prototype has no user-access controls, hence on the demo website updating and deleting are disabled as well as manual hexagrams.</p>
-<p>Thus all consultations are randomly generated and remain part of the archive, however there is no identifying information stored along with them.</p>
-<p>This growing archive is an anonymous indicator of the prevailing questions on people's minds and the corresponding responses from the I Ching.</p>
-<p>Warning: do not take an archived response as 'general advice' unless it is in response to a general query. If it was a personal query the response would take into account the personal situation of the questioner, thus if you have a personal question it is best to ask it yourself so that your personal situation is taken into account.</p>
-<p><b>Licensing:</b></p>
-<p>This work (excluding the text fragments) is <a href="https://github.com/anandavala/ichingdb/blob/master/LICENSE">unlicensed</a> and free to use and adapt in any way you see fit.</p>
-<p>This approach is simple, flexible, customisable and open source. I hope it will evolve from these humble beginnings.</p>
-<p>The source files can be found <a href="https://github.com/anandavala/ichingdb/">here</a>.</p>
-<p>Note: I am not a professional developer, I'm just an inspired hobbyist flying by the seat of my pants; mostly following tutorials to figure out how to pull it all together. Any help in developing this further would be much appreciated.</p>
-<p>Some of the text fragments included in the database were scraped from <a href="http://jamesdekorne.com/GBCh/I%20Ching_dl.pdf">The Gnostic Book of Changes</a>. There is no copyright declaration with these.</p>
-<p>Most were scraped from the website <a href="http://inthefamilyway.org/iching/">I Ching: Mothering Change</a>, which is based on the work of
-<a href="https://ichinglivingchange.org/">Steven Karcher</a>. These are copyrighted.</p>
-<p>Note: I have used Steven Karcher's book <a href="https://www.amazon.com/Total-I-Ching-Myths-Change/dp/074993980X/ref=sr_1_1?s=books&ie=UTF8&qid=1436475035&sr=1-1&keywords=Total+I+Ching%3A+Myths+for+Change">Total I Ching: Myths For Change</a>
-for many years. I include this text as a sign of respect for his work and out of a desire to provide the best I Ching access to the general public. I only scraped a minimal amount of text and hope there are no copyright issues. If so the text can easily be swapped for another set.</p>
-<p>Enjoy! :)</p>
+<h3>Tools to explore the structure of the I Ching</h3>
+<h4><a href="{% url 'ichingdb:explore' %}">Possible Readings</a></h4>
+<h4><a href="{% url 'ichingdb:related' %}">Related Hexagrams</a></h4>
+<h4><a href="{% url 'ichingdb:paths' %}">Paths Between Hexagrams</a></h4>

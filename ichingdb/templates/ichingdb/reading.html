@@ -1,21 +1,19 @@
-<!-- <p><a href="{% url 'ichingdb:update' cid %}">Update</a> . . . <a href="{% url 'ichingdb:delete' cid %}">Delete</a> . . . <a href="{% url 'ichingdb:index' %}">Index</a></p> -->
-<p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a> . . . <a href="{% url 'ichingdb:random' %}">Consult the I Ching</a> . . . <a href="{% url 'ichingdb:explore' %}">Explore Possible Readings</a> . . . <a href="{% url 'ichingdb:related' %}">Explore Related Hexagrams</a> . . . <a href="{% url 'ichingdb:paths' %}">Explore Paths Between Hexagrams</a></p>
-<p><i>"The I Ching is not magic; it is science that we don’t understand."</i> ~Terence McKenna</p>
-<p>More information:</p>
-<ul>
-<li><p><a href="https://www.quora.com/What-use-is-the-I-Ching/answer/John-Ringland" target="_blank">What use is the I Ching?</a></p></li>
-<li><p><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></p></li>
-<li><p><a href="../#About">About this website and the new technology behind it...</a></p></li>
-</ul>
-
+<p><strike>Update</strike> . . . <strike>Delete</strike> . . . <a href="{% url 'ichingdb:index' %}">Index</a> . . . <a href="{% url 'ichingdb:random' %}">Consult the I Ching</a></p>
+<p><strong><i>"The I Ching is not magic; it is science that we don’t understand."</i></strong> ~Terence McKenna</p>
 {% for c in simple_result %}
 <h1>Consultation {{ cid }}:</h1>
 <h2>Query:</h2>
 <h4>{{ c.query }}</h4>
 <h2>Response:</h2>
-<h4>{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</h4>
+<table border cellpadding="20" cellspacing="4">
+<tr><td align="center" valign="bottom"><h4>{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</h4></td></tr>
+<tr><td align="center" valign="bottom"><h4>{{ c.initial_name }} {% if line_result %}{% for l in line_result %}{% if forloop.last %} &rarr; {{ l.result_name }}{% endif %}{% endfor %}{% endif %}</h4></td></tr>
+<tr><td align="center" valign="bottom"><table><tr><td><table cellpadding="0" cellspacing="0"><tr><td valign="bottom"><font size="10">{{ c.initial_usym }}</font></td></tr><tr><td valign="top"><font size="10">{{ c.initial_lsym }}</font></td></tr></table></td><td valign="middle">{% if line_result %}{% for l in line_result %}{% if forloop.last %} <font size="5">&nbsp; <b>&rarr;</b> &nbsp;</font> {% endif %}{% endfor %}{% endif %}</td><td>{% if line_result %}{% for l in line_result %}{% if forloop.last %} <table cellpadding="0" cellspacing="0"><tr><td valign="bottom"><font size="10">{{ l.result_usym }}</font></td></tr><tr><td valign="top"><font size="10">{{ l.result_lsym }}</font></td></tr></table>{% endif %}{% endfor %}{% endif %}</td></tr></table></td></tr>
+<tr><td align="center" valign="bottom"><table><tr><td><table cellpadding="0" cellspacing="0"><tr><td align="center" valign="bottom"><h4>{{ c.initial_upper }}</h4></td></tr><tr><td align="center" valign="top"><h4>{{ c.initial_lower }}</h4></td></tr></table></td><td align="center">{% if line_result %}{% for l in line_result %}{% if forloop.last %} <h2>&nbsp; &rarr; &nbsp;</h2> {% endif %}{% endfor %}{% endif %}</td><td>{% if line_result %}{% for l in line_result %}{% if forloop.last %} <table cellpadding="0" cellspacing="0"><tr><td align="center" valign="bottom"><h4>{{ l.result_upper }}</h4></td></tr><tr><td align="center" valign="top"><h4>{{ l.result_lower }}</h4></td></tr></table>{% endif %}{% endfor %}{% endif %}</td></tr></table></td></tr>
+</table>
+<p>Note: for more details on any hexagram below just click on its name.</p>
 <h3>The primary context is:</h3>
-<p><font color="#0000FF"><b>{{ c.initial }} {{ c.initial_name }}</b></font></p>
+<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.initial }}/" target="_blank">{{ c.initial }} {{ c.initial_name }}</a></b></font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
 {% endfor %}
 
@@ -23,18 +21,18 @@
     {% for c in line_result %}
         {% if forloop.first %}
             <h3>The outcome or related factor is: <small>(Use your intuition to decide how this is related to the enquiry.)</small></h3>
-            <p><b>{{ c.result }} {{ c.result_name }}</b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.result }}/" target="_blank">{{ c.result }} {{ c.result_name }}</a></b></p>
             <p>{{ c.result_gnostic }}.. {{ c.result_desc }}</p>
             <h3>Specific pronouncements within the primary context:</h3>
             <ul>
         {% endif %}
         <li>
-        <h3>Line {{ c.line }} of {% for s in simple_result %} {{ s.initial }} ({{ s.initial_name }}) {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
-        <p><strong>In the sub-context of:</strong> <b>{{ c.context }} {{ c.context_name }}:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></p>
+        <h3>Line {{ c.line }} of {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.initial }}/" target="_blank">{{ s.initial }} {{ s.initial_name }}</a> {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
+        <p><strong>In the sub-context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.context }}/" target="_blank">{{ c.context }} {{ c.context_name }}</a>:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></p>
         <p><strong>The pronouncement is:</strong><font color="#0000FF"> {{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
-        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} {{ s.mirror }} ({{ s.mirror_name }}) {% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
-        <p><font color="#708090"><strong>In the context of:</strong> <b>{{ c.m_context }} {{ c.m_context_name }}:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
+        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.mirror }}/" target="_blank">{{ s.mirror }} {{ s.mirror_name }}</a> {% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
+        <p><font color="#708090"><strong>In the sub context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.m_context }}/" target="_blank">{{ c.m_context }} {{ c.m_context_name }}</a>:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <p><font color="#708090"><strong>The pronouncement is:</strong> {{ c.m_trans }}</font></p>
         <p><font color="#708090">{{ c.m_comm }}</font></p>
         </li>
@@ -46,21 +44,24 @@
             <p>{{ s.mirror_gnostic }}.. {{ s.mirror_desc }}</p>
             {% endfor %}-->
             <h3>The ideal inner stance is: <small>(The inner change operator.)</small></h3>
-            <p><b>{{ c.innerop }} {{ c.i_name }}</b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.innerop }}/" target="_blank">{{ c.innerop }} {{ c.i_name }}</a></b></p>
             <p>{{ c.i_gnostic }}.. {{ c.i_desc }}</p>
             <h3>The ideal outer stance is: <small>(The outer change operator.)</small></h3>
-            <p><b>{{ c.outerop }} {{ c.o_name }}</b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.outerop }}/" target="_blank">{{ c.outerop }} {{ c.o_name }}</a></b></p>
             <p>{{ c.o_gnostic }}.. {{ c.o_desc }}</p>
         {% endif %}
     {% endfor %}
 {% endif %}
 
 {% for c in simple_result %}
+<h3>The ideal overall approach to the situation is:</h3>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.ideal }}/" target="_blank">{{ c.ideal }} {{ c.i_name }}</a></b></p>
+<p>{{ c.i_gnostic }}.. {{ c.i_desc }}</p>
 <h3>The hidden possibility in the situation is:</h3>
-<p><b>{{ c.hidden }} {{ c.h_name }}</b></p>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.hidden }}/" target="_blank">{{ c.hidden }} {{ c.h_name }}</a></b></p>
 <p>{{ c.h_gnostic }}.. {{ c.h_desc }}</p>
 <h3>What is counter-indicated in your situation: <small>(The shadow site.)</small></h3>
-<p><b>{{ c.shadow }} {{ c.s_name }}</b></p>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.shadow }}/" target="_blank">{{ c.shadow }} {{ c.s_name }}</a></b></p>
 <p>{{ c.s_gnostic }}.. {{ c.s_desc }}</p>
 {% endfor %}
 
@@ -70,5 +71,3 @@
 <h3>Conclusion: (Optionally record your interpretation of the reading.)</h3>
 <p>Disabled in prototype.<!--{{ c.conclusion }}--></p>
 {% endfor %}
-
-<p>Note: This is a full reading but there is only one paragraph to summarise each hexagram. Please refer to a more complete text, such as <a href="http://inthefamilyway.org/iching/hexagrams/" target="_blank">I Ching: Mothering Change</a>, for more details on the hexagrams.</p>

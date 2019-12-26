@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: ichingdb
 -- ------------------------------------------------------
--- Server version	5.7.22-0ubuntu0.16.04.1
+-- Server version	5.7.28-0ubuntu0.16.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,176 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add line changes',1,'add_linechanges'),(2,'Can change line changes',1,'change_linechanges'),(3,'Can delete line changes',1,'delete_linechanges'),(4,'Can add hexagram line',2,'add_hexagramline'),(5,'Can change hexagram line',2,'change_hexagramline'),(6,'Can delete hexagram line',2,'delete_hexagramline'),(7,'Can add consultation',3,'add_consultation'),(8,'Can change consultation',3,'change_consultation'),(9,'Can delete consultation',3,'delete_consultation'),(10,'Can add trigram line',4,'add_trigramline'),(11,'Can change trigram line',4,'change_trigramline'),(12,'Can delete trigram line',4,'delete_trigramline'),(13,'Can add hexagram',5,'add_hexagram'),(14,'Can change hexagram',5,'change_hexagram'),(15,'Can delete hexagram',5,'delete_hexagram'),(16,'Can add pair',6,'add_pair'),(17,'Can change pair',6,'change_pair'),(18,'Can delete pair',6,'delete_pair'),(19,'Can add line',7,'add_line'),(20,'Can change line',7,'change_line'),(21,'Can delete line',7,'delete_line'),(22,'Can add h line position',8,'add_hlineposition'),(23,'Can change h line position',8,'change_hlineposition'),(24,'Can delete h line position',8,'delete_hlineposition'),(25,'Can add trigram',9,'add_trigram'),(26,'Can change trigram',9,'change_trigram'),(27,'Can delete trigram',9,'delete_trigram'),(28,'Can add log entry',10,'add_logentry'),(29,'Can change log entry',10,'change_logentry'),(30,'Can delete log entry',10,'delete_logentry'),(31,'Can add group',11,'add_group'),(32,'Can change group',11,'change_group'),(33,'Can delete group',11,'delete_group'),(34,'Can add permission',12,'add_permission'),(35,'Can change permission',12,'change_permission'),(36,'Can delete permission',12,'delete_permission'),(37,'Can add user',13,'add_user'),(38,'Can change user',13,'change_user'),(39,'Can delete user',13,'delete_user'),(40,'Can add content type',14,'add_contenttype'),(41,'Can change content type',14,'change_contenttype'),(42,'Can delete content type',14,'delete_contenttype'),(43,'Can add session',15,'add_session'),(44,'Can change session',15,'change_session'),(45,'Can delete session',15,'delete_session');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$100000$WNyeUjNHrBXZ$AnFvZrDFlkMuruNl0vhefutK8yqPQXNl5ZtJyuyeI3U=','2018-07-15 00:25:11.830351',1,'admin','','','anandavala@gmail.com',1,1,'2018-06-06 05:48:58.670487');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `consultation`
@@ -40,7 +210,7 @@ CREATE TABLE `consultation` (
   `notes` varchar(500) DEFAULT NULL,
   `conclusion` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`consultation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,8 +219,120 @@ CREATE TABLE `consultation` (
 
 LOCK TABLES `consultation` WRITE;
 /*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-INSERT INTO `consultation` VALUES (1,'What do you think of this ichingdb?',0,0,1,1,1,0,0,1,1,0,1,1,NULL,NULL),(2,'Please speak to me?',0,0,1,1,1,1,1,0,1,0,1,1,NULL,NULL),(3,'Please speak to the world about the potential of ichingdb?',1,0,1,0,1,0,1,1,0,0,0,0,NULL,NULL),(4,'Please speak to me about the ResearchDB project, SSD project, InnovationHub project and the general aim of bringing people together with collective coherence?',0,1,0,0,1,0,0,1,1,0,0,0,NULL,NULL),(5,'Exploring Obstruction to Pervading.',0,1,0,1,0,1,1,1,1,1,1,1,NULL,NULL),(6,'Exploring Confining to Deliverance.',0,0,1,0,0,0,1,0,1,1,0,0,NULL,NULL),(7,'Please speak to all of us who struggle on in a difficult time and strive to bring about a brighter future?',0,1,1,0,1,0,1,1,0,0,0,0,NULL,NULL),(8,'Following on from the previous consultation about striving for a brighter future, you said: \"Give this sort of effort up. Let go of the past and focus on your real ideals. There is no game in the field for you now. Open your heart to the new spirit. Gather energy for a decisive new move.\" What would this look like? Please provide insight and inspiration.',0,0,1,0,0,1,0,0,1,0,1,0,NULL,NULL),(9,'Please guide me away from embattled lonely striving and towards ease, warmth and interchange?',0,1,0,0,0,1,0,0,0,0,1,0,NULL,NULL),(10,'Speak to me about Gregg, my connection with him, and the life that we lead?',0,0,0,1,1,0,1,0,0,1,0,0,NULL,NULL),(11,'I sense that there is value in this ichingdb, how do I share it with the world?',0,0,0,0,0,0,1,0,1,0,0,1,NULL,NULL),(12,'No changing lines.',0,0,0,0,0,0,1,0,1,0,0,0,NULL,NULL),(13,'Speak about my substance consumption?',1,0,0,0,1,0,1,0,1,0,1,0,NULL,NULL),(14,'Speak to me regarding my social anxiety, withdrawal, isolationism, instinctive fear of humans and general avoidance of the local community?',1,1,1,0,0,1,0,0,0,0,0,0,NULL,NULL),(15,'The first query via the web interface (admin area). How am I going?',0,0,1,1,0,0,1,0,1,1,1,1,NULL,NULL),(30,'First fully interfaced consultation. Please speak to this occassion?',0,1,1,0,1,0,1,0,0,0,0,1,'It all seems to be working :)','But it\'s not ready for deployment. It is just a creative endeavour that is gradually evolving...'),(65,'It has some rough edges but the core functionality is up and running! Yay :) Please speak to this occassion?',1,0,1,0,0,1,0,0,0,1,1,1,NULL,NULL),(66,'What about contacting Steven Karcher, to get his permission to use the text, as well as his blessing and possibly help?',0,0,0,1,1,1,1,1,0,0,0,1,NULL,NULL),(67,'Please guide me in what to do next with ichingdb? Use it? Refine it? Spread it? Leave it? Contemplate it? etc?',1,0,1,0,1,1,1,1,1,1,1,1,NULL,NULL),(68,'Speak to me about John and I moving in together?',1,1,1,0,1,1,0,0,0,0,0,1,NULL,NULL),(79,'First random hexagram using 3 coins.',1,0,1,0,1,1,0,0,1,0,0,0,'Using random for each line and chng produced too many changing lines, But using the coin method makes it feel much more familiar.',NULL),(80,'This is better as a general method rather than a proprietary platform, right?',1,0,1,1,0,0,1,0,1,0,0,0,NULL,NULL),(81,'You warned me against contacting Karcher, and spoke of the Grandmother spirit, which brought to mind inthefamilyway.org, where I found the text, should I contact them somehow?',1,0,0,0,1,0,1,0,0,1,0,0,'I\'ll take that as a definite \'yes\'.','I will first deploy it online and then share it.'),(82,'Tell me about Julie Chase-Daniel behind that website?',0,0,1,0,0,1,0,0,0,0,1,0,NULL,NULL),(83,'Do I focus on minimal functionality only, or also beautify it before reaching out?',0,0,1,0,0,0,1,0,1,1,1,0,NULL,NULL),(84,'Quora reading: What use is the I Ching?',0,0,0,0,1,1,0,1,0,0,0,0,NULL,NULL),(85,'Re Gregg and I moving in together, you spoke of leaving the old connections and finding where I truly belonged... do I need space from him?',1,1,1,0,0,1,1,0,1,0,1,0,NULL,NULL),(86,'I have struggled with formal learning at uni and this recent break, being so productive and instructive, shows me that maybe I am better suited to project oriented learning rather than course oriented learning. What do you say about this?',0,0,0,0,1,0,0,0,0,0,1,0,NULL,NULL),(87,'What about showing the online version of this to my tutors from the last uni subject, which inspired this?',1,0,0,0,0,0,0,1,1,1,0,1,NULL,NULL),(88,'I Ching, please speak us all in this context?',1,1,0,1,0,0,1,0,1,1,0,1,'The context is a FB update post that I am writing.',NULL);
+INSERT INTO `consultation` VALUES (1,'What do you think of this ichingdb?',0,0,1,1,1,0,0,1,1,0,1,1,NULL,NULL),(2,'Please speak to me?',0,0,1,1,1,1,1,0,1,0,1,1,NULL,NULL),(3,'Please speak to the world about the potential of ichingdb?',1,0,1,0,1,0,1,1,0,0,0,0,NULL,NULL),(4,'Please speak to me about the ResearchDB project, SSD project, InnovationHub project and the general aim of bringing people together with collective coherence?',0,1,0,0,1,0,0,1,1,0,0,0,NULL,NULL),(5,'Exploring Obstruction to Pervading.',0,1,0,1,0,1,1,1,1,1,1,1,NULL,NULL),(6,'Exploring Confining to Deliverance.',0,0,1,0,0,0,1,0,1,1,0,0,NULL,NULL),(7,'Please speak to all of us who struggle on in a difficult time and strive to bring about a brighter future?',0,1,1,0,1,0,1,1,0,0,0,0,NULL,NULL),(8,'Following on from the previous consultation about striving for a brighter future, you said: \"Give this sort of effort up. Let go of the past and focus on your real ideals. There is no game in the field for you now. Open your heart to the new spirit. Gather energy for a decisive new move.\" What would this look like? Please provide insight and inspiration.',0,0,1,0,0,1,0,0,1,0,1,0,NULL,NULL),(9,'Please guide me away from embattled lonely striving and towards ease, warmth and interchange?',0,1,0,0,0,1,0,0,0,0,1,0,NULL,NULL),(10,'Speak to me about Gregg, my connection with him, and the life that we lead?',0,0,0,1,1,0,1,0,0,1,0,0,NULL,NULL),(11,'I sense that there is value in this ichingdb, how do I share it with the world?',0,0,0,0,0,0,1,0,1,0,0,1,NULL,NULL),(12,'No changing lines.',0,0,0,0,0,0,1,0,1,0,0,0,NULL,NULL),(13,'Speak about my substance consumption?',1,0,0,0,1,0,1,0,1,0,1,0,NULL,NULL),(14,'Speak to me regarding my social anxiety, withdrawal, isolationism, instinctive fear of humans and general avoidance of the local community?',1,1,1,0,0,1,0,0,0,0,0,0,NULL,NULL),(15,'The first query via the web interface (admin area). How am I going?',0,0,1,1,0,0,1,0,1,1,1,1,NULL,NULL),(30,'First fully interfaced consultation. Please speak to this occassion?',0,1,1,0,1,0,1,0,0,0,0,1,'It all seems to be working :)','But it\'s not ready for deployment. It is just a creative endeavour that is gradually evolving...'),(65,'It has some rough edges but the core functionality is up and running! Yay :) Please speak to this occassion?',1,0,1,0,0,1,0,0,0,1,1,1,NULL,NULL),(66,'What about contacting Steven Karcher, to get his permission to use the text, as well as his blessing and possibly help?',0,0,0,1,1,1,1,1,0,0,0,1,NULL,NULL),(67,'Please guide me in what to do next with ichingdb? Use it? Refine it? Spread it? Leave it? Contemplate it? etc?',1,0,1,0,1,1,1,1,1,1,1,1,NULL,NULL),(68,'Speak to me about John and I moving in together?',1,1,1,0,1,1,0,0,0,0,0,1,NULL,NULL),(79,'First random hexagram using 3 coins.',1,0,1,0,1,1,0,0,1,0,0,0,'Using random for each line and chng produced too many changing lines, But using the coin method makes it feel much more familiar.',NULL),(80,'This is better as a general method rather than a proprietary platform, right?',1,0,1,1,0,0,1,0,1,0,0,0,NULL,NULL),(81,'You warned me against contacting Karcher, and spoke of the Grandmother spirit, which brought to mind inthefamilyway.org, where I found the text, should I contact them somehow?',1,0,0,0,1,0,1,0,0,1,0,0,'I\'ll take that as a definite \'yes\'.','I will first deploy it online and then share it.'),(82,'Tell me about Julie Chase-Daniel behind that website?',0,0,1,0,0,1,0,0,0,0,1,0,NULL,NULL),(83,'Do I focus on minimal functionality only, or also beautify it before reaching out?',0,0,1,0,0,0,1,0,1,1,1,0,NULL,NULL),(84,'Quora reading: What use is the I Ching?',0,0,0,0,1,1,0,1,0,0,0,0,NULL,NULL),(85,'Re Gregg and I moving in together, you spoke of leaving the old connections and finding where I truly belonged... do I need space from him?',1,1,1,0,0,1,1,0,1,0,1,0,NULL,NULL),(86,'I have struggled with formal learning at uni and this recent break, being so productive and instructive, shows me that maybe I am better suited to project oriented learning rather than course oriented learning. What do you say about this?',0,0,0,0,1,0,0,0,0,0,1,0,NULL,NULL),(87,'What about showing the online version of this to my tutors from the last uni subject, which inspired this?',1,0,0,0,0,0,0,1,1,1,0,1,NULL,NULL),(88,'I Ching, please speak us all in this context?',1,1,0,1,0,0,1,0,1,1,0,1,'The context is a FB update post that I am writing.',NULL),(89,'I now have this deployed and in use, please speak to me about how to proceed with this?',0,1,0,0,1,1,1,0,1,0,0,0,NULL,NULL),(90,'If there is no game in this field, then how do I proceed? What is coming and how to approach or accept it?',1,0,0,0,0,1,0,0,0,0,1,0,NULL,NULL),(91,'Before I move on, should I inform some people (other than just on FB) so this technology can spread?',1,1,0,0,0,0,1,0,0,0,1,1,NULL,NULL),(92,'So I keep this mostly to myself for now and use it, whilst tapping in to that everflowing source of energy, doing the inner work and connecting to the common good... please guide and inspire me in this?',0,0,1,0,1,1,0,1,0,0,0,0,NULL,NULL),(93,'You said \"Hold onto your desire to follow things impulsively. There is no game in the field now. Dedicate your efforts to the real common good.\" Please speak to me about the real common good and how to connect with it?',1,0,0,0,0,0,0,0,1,0,1,0,NULL,NULL),(94,'So I connect with the real common good by increasing quality involvements, decreasing corrupt involvements and eliminating outmoded habits, patterns and structures. Please guide and inspire me in this?',0,1,1,0,1,0,1,0,1,0,1,0,NULL,NULL),(95,'What impulse, trap, message? Please elaborate?',1,0,1,0,1,0,1,0,1,0,0,0,NULL,NULL),(96,'So you urge me to not just enquire about stripping, but to actively engage with it?',0,1,1,1,0,1,1,0,0,1,0,1,NULL,NULL),(97,'How does Greggy fit in with this new time?',1,1,1,0,0,0,0,0,0,0,1,0,NULL,NULL),(98,'How does the Rainbow family fit in with this new time?',0,0,1,0,0,0,1,0,0,0,0,0,NULL,NULL),(99,'Speak to me about the journey that Greggy is on, who he is and how he is going?',0,1,0,0,0,0,0,0,0,0,0,0,NULL,NULL),(100,'Are Greggy and I able to enter the new time together or do we have diverging journeys?',0,0,0,0,1,0,0,0,1,1,1,0,NULL,NULL),(101,'So you say our paths will part, but they will join again later, after we have both undergone transformations?',0,0,0,1,1,0,1,0,0,0,0,0,NULL,NULL),(102,'So the separation is not something to be \'managed\', it will happen naturally as I connect my inner and outer lives and start to manifest my \'self\' more clearly. Please speak to this?',1,0,0,0,0,0,1,0,1,0,0,0,NULL,NULL),(103,'Thank you I Ching. What do you wish to leave me with tonight?',0,0,0,1,0,1,1,0,1,0,0,0,NULL,NULL),(104,'I have now implemented full readings. I am amazed at how awesome you are I Ching Please speak to me about yourself?',0,1,0,1,0,0,1,0,1,1,1,0,NULL,NULL),(105,'Please speak to me about the Australian Rainbow Family in the context of the up coming FNQ gathering and the history of tensions surrounding exclusive gatherings, or so called \"healing gatherings\"?',1,1,0,0,0,0,0,1,0,0,1,0,NULL,NULL),(106,'In this context please speak to those aligned with the physical purist approach?',1,0,1,1,1,0,1,0,1,0,1,0,NULL,NULL),(107,'In this context please speak to those aligned with the social tantric approach?',1,1,0,0,1,0,0,0,0,0,1,1,NULL,NULL),(108,'How do I fit into this context? Should I go? If so how to approach it?',1,1,0,0,0,0,0,1,1,1,1,0,NULL,NULL),(109,'Please speak to me about the idea of re-connecting with Xanda?',0,1,1,1,0,0,0,0,1,1,0,0,NULL,NULL),(110,'Speak to me about future connections, the future grouping that you speak of?',0,0,1,0,1,0,1,0,0,0,1,0,NULL,NULL),(111,'You are so clear and accessible through ichingdb, I am a amazed and a little overwhelmed by this new-found ability to speak with you. Please guide me in how best to engage with you through ichingdb?',0,1,0,0,0,0,1,0,0,1,1,0,NULL,NULL),(112,'I feel that ichingdb is of great importance to others, how can I share this blessing without getting entangled in the process?',1,1,1,0,1,0,1,0,1,0,1,1,NULL,NULL),(113,'You say \"There is a ripe fruit uneaten and you must carry it away\", please elaborate?',0,0,1,0,1,0,0,0,1,1,0,0,NULL,NULL),(114,'The connection through SSD with Jason and through him with Yanis and DiEM25... is this an important connection? Please speak about it and how to approach it?',0,0,0,0,0,0,1,0,1,0,1,0,NULL,NULL),(115,'You say \"Though you ostensibly have all you need you feel oppressed by lack of recognition. Do not worry. Help is on its way. Draw others in and make an offering to your common goals. Open your heart anew.\" Please elaborate?',1,0,0,1,0,1,0,0,1,0,0,0,NULL,NULL),(116,'Should I follow or resist the idea of posting to onlineclarity to get the word out about ichingdb? Humbly. briefly and without entanglement?',1,1,0,0,1,0,0,0,1,0,1,0,NULL,NULL),(117,'I have a draft intro, what do you think?',1,0,1,0,1,0,1,0,1,1,0,0,NULL,NULL),(118,'How about the stripped down version?',0,1,0,1,1,0,1,0,0,0,0,0,NULL,NULL),(119,'What about this more personal and candid version?',0,0,1,1,0,0,0,0,0,0,1,0,NULL,NULL),(120,'Okay to send?',1,0,1,1,0,0,0,0,1,0,0,0,NULL,NULL),(121,'What about this new version written the next morning?',1,0,0,1,1,0,0,0,0,0,0,1,NULL,NULL),(122,'I\'m feeling rather uncomfortable about their response so far... am I in the right place? How to make the  best of this situation?',0,1,0,1,0,0,1,0,0,0,1,0,NULL,NULL),(123,'It feels like a cold response from the onlineclarity community - is it my approach or their issues? How can I melt the ice?',1,1,0,0,0,0,1,0,1,0,0,1,NULL,NULL),(124,'How about the latest response to the onlineclarity forum?',0,0,0,0,1,0,1,1,1,1,0,1,NULL,NULL),(125,'Okay now?',0,0,1,1,1,0,0,0,0,0,0,0,NULL,NULL),(126,'Speak to me about how the interaction is going and how to handle it?',0,0,1,0,1,1,0,0,0,0,1,0,NULL,NULL),(127,'In the context of the Rainbow scouting mission and the lead up to the Rainbow, please speak to us?',0,0,1,0,1,0,0,1,1,1,1,0,NULL,NULL),(128,'What do you say about taking ichingdb to the next level, with user accounts and consultation sharing?',0,1,1,1,1,0,0,0,1,0,0,0,NULL,NULL),(129,'So its not a social event, its personal, confessional, so no sharing, just public or private. What about encryption to ensure privacy, even from the developers?',1,0,0,0,0,0,0,0,1,0,0,0,NULL,NULL),(130,'Speak to me about the Goldsborough opportunity?',1,0,0,0,1,0,1,0,1,1,1,0,NULL,NULL),(131,'Please give insight into this time with JE?',1,0,0,0,1,0,0,0,1,0,0,0,NULL,NULL),(132,'Speak to me here and now?',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL),(133,'I have a subject starting soon, and a gathering, can I do both? Or which one? My heart is drawn to the gathering, my head to the course, and I doubt if I can do both...?',1,0,1,0,0,0,0,0,0,1,1,0,NULL,NULL),(134,'It feels like the gathering is the Way... which means extending the break from study - will my outer work be okay whilst I do some inner work and social work?',0,0,0,0,0,0,1,0,1,1,1,1,NULL,NULL),(135,'Testing <b>formatting</b>?',0,0,1,0,0,0,1,1,0,0,0,0,NULL,NULL),(136,'Testing \\\'<b>formatting</b>\\\'?',1,0,1,0,0,1,0,0,1,0,0,0,NULL,NULL),(137,'Testing \\\"<b>formatting</b>\\\"?',1,1,0,0,0,1,0,0,1,1,0,0,NULL,NULL),(138,'What about the recent changes?',0,0,1,0,0,0,0,0,1,0,1,0,NULL,NULL),(139,'You know what\'s going on, speak to me?',0,0,1,1,1,0,0,0,0,0,1,0,NULL,NULL),(140,'Speak to me about the recent contact with Xanda, am I right to be wary?',1,0,1,1,0,0,1,0,0,0,0,0,NULL,NULL),(141,'Tell me about Les Dyer?',1,0,0,0,0,0,0,1,1,1,0,0,NULL,NULL),(142,'Is the world going mad or am I?',1,1,0,0,0,0,0,1,1,1,0,0,NULL,NULL),(143,'Am I outwardly becoming a slob? Am I doing a Mick?',1,0,1,0,0,1,1,1,0,0,0,1,NULL,NULL),(144,'Update the IChingDB version?',1,1,1,0,1,0,1,0,1,0,0,0,NULL,NULL),(145,'Re the recent changes?',0,1,1,0,0,0,1,0,1,0,0,1,NULL,NULL),(146,'Local copy seems updated, please advise?',1,0,0,0,0,1,0,0,0,0,1,0,NULL,NULL),(147,'Ironed out a couple of bugs, is it ready to go live?',1,1,1,1,1,0,0,1,1,0,1,0,NULL,NULL),(148,'Is it ready?',1,0,0,0,1,0,0,0,1,1,1,0,NULL,NULL);
 /*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2018-06-06 06:13:15.728318','15','15:  The first query via the web interface (admin area). How am I going?',1,'[{\"added\": {}}]',3,1),(2,'2018-06-08 04:23:19.445163','25','25:  Twelth',3,'',3,1),(3,'2018-06-08 04:23:19.463055','24','24:  Eleventh',3,'',3,1),(4,'2018-06-08 04:23:19.477733','23','23:  Tenth',3,'',3,1),(5,'2018-06-08 04:23:19.486787','22','22:  Tenth',3,'',3,1),(6,'2018-06-08 04:23:19.495494','21','21:  Ninth',3,'',3,1),(7,'2018-06-08 04:23:19.504523','20','20:  Eighth?',3,'',3,1),(8,'2018-06-08 04:23:19.513483','19','19:  Fourth',3,'',3,1),(9,'2018-06-08 04:23:19.522474','18','18:  Third Test.',3,'',3,1),(10,'2018-06-08 04:23:19.530982','17','17:  Second test.',3,'',3,1),(11,'2018-06-08 04:23:19.538905','16','16:  Testing forms.',3,'',3,1),(12,'2018-06-08 10:09:24.261349','64','64:  r26',3,'',3,1),(13,'2018-06-08 10:09:24.270740','63','63:  r25',3,'',3,1),(14,'2018-06-08 10:09:24.278507','62','62:  r24',3,'',3,1),(15,'2018-06-08 10:09:24.293276','61','61:  c23',3,'',3,1),(16,'2018-06-08 10:09:24.307666','60','60:  C23',3,'',3,1),(17,'2018-06-08 10:09:24.316538','59','59:  r23',3,'',3,1),(18,'2018-06-08 10:09:24.326023','58','58:  r22',3,'',3,1),(19,'2018-06-08 10:09:24.335206','57','57:  r21',3,'',3,1),(20,'2018-06-08 10:09:24.344446','56','56:  r20',3,'',3,1),(21,'2018-06-08 10:09:24.353752','55','55:  r19',3,'',3,1),(22,'2018-06-08 10:09:24.362549','54','54:  r18',3,'',3,1),(23,'2018-06-08 10:09:24.371409','53','53:  r17',3,'',3,1),(24,'2018-06-08 10:09:24.380415','52','52:  r16',3,'',3,1),(25,'2018-06-08 10:09:24.389429','51','51:  r15',3,'',3,1),(26,'2018-06-08 10:09:24.398794','50','50:  r14',3,'',3,1),(27,'2018-06-08 10:09:24.408725','49','49:  r13',3,'',3,1),(28,'2018-06-08 10:09:24.419087','48','48:  r12',3,'',3,1),(29,'2018-06-08 10:09:24.428821','47','47:  r11',3,'',3,1),(30,'2018-06-08 10:09:24.438875','46','46:  r10',3,'',3,1),(31,'2018-06-08 10:09:24.448725','45','45:  r9',3,'',3,1),(32,'2018-06-08 10:09:24.458198','44','44:  r8',3,'',3,1),(33,'2018-06-08 10:09:24.467735','43','43:  r7',3,'',3,1),(34,'2018-06-08 10:09:24.477390','42','42:  r6',3,'',3,1),(35,'2018-06-08 10:09:24.487177','41','41:  r5',3,'',3,1),(36,'2018-06-08 10:09:24.496689','40','40:  r4',3,'',3,1),(37,'2018-06-08 10:09:24.506243','39','39:  R3?',3,'',3,1),(38,'2018-06-08 10:09:24.515891','38','38:  R2?',3,'',3,1),(39,'2018-06-08 10:09:24.525732','37','37:  Fiddling with details, but mostly there... please guide me?',3,'',3,1),(40,'2018-06-08 10:09:24.535498','36','36:  First random hexagram.',3,'',3,1),(41,'2018-06-08 10:09:24.545074','34','34:  Another one',3,'',3,1),(42,'2018-06-08 10:09:24.554396','33','33:  Another one',3,'',3,1),(43,'2018-06-08 10:09:24.563864','32','32:  Testing disabled fields.',3,'',3,1),(44,'2018-06-08 10:09:24.573058','31','31:  First random hexagram.',3,'',3,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (10,'admin','logentry'),(11,'auth','group'),(12,'auth','permission'),(13,'auth','user'),(14,'contenttypes','contenttype'),(3,'ichingdb','consultation'),(5,'ichingdb','hexagram'),(2,'ichingdb','hexagramline'),(8,'ichingdb','hlineposition'),(7,'ichingdb','line'),(1,'ichingdb','linechanges'),(6,'ichingdb','pair'),(9,'ichingdb','trigram'),(4,'ichingdb','trigramline'),(15,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'ichingdb','0001_initial','2018-06-06 05:47:12.528171'),(2,'contenttypes','0001_initial','2018-06-06 05:47:19.318995'),(3,'auth','0001_initial','2018-06-06 05:47:21.005856'),(4,'admin','0001_initial','2018-06-06 05:47:21.381866'),(5,'admin','0002_logentry_remove_auto_add','2018-06-06 05:47:21.407016'),(6,'contenttypes','0002_remove_content_type_name','2018-06-06 05:47:21.638731'),(7,'auth','0002_alter_permission_name_max_length','2018-06-06 05:47:21.680379'),(8,'auth','0003_alter_user_email_max_length','2018-06-06 05:47:21.711642'),(9,'auth','0004_alter_user_username_opts','2018-06-06 05:47:21.726638'),(10,'auth','0005_alter_user_last_login_null','2018-06-06 05:47:21.839833'),(11,'auth','0006_require_contenttypes_0002','2018-06-06 05:47:21.849324'),(12,'auth','0007_alter_validators_add_error_messages','2018-06-06 05:47:21.873214'),(13,'auth','0008_alter_user_username_max_length','2018-06-06 05:47:21.956577'),(14,'auth','0009_alter_user_last_name_max_length','2018-06-06 05:47:21.991385'),(15,'sessions','0001_initial','2018-06-06 05:47:22.111576');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('zx1e6pjq4plmbavv6ik6pcwwvprnlyd5','NTBiZjMxMjYwY2MwODgwYWZmNmQ5NGIyZDg0NTc2MWE5OTc3OGRhYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjQ2NzFhODBlMmUxZDhjYWRmZTdiZTI1NWRkOWU2ZjBlZDM3MWM2NjYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=','2018-07-29 00:25:11.839408');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -245,7 +527,10 @@ DROP TABLE IF EXISTS `trigram`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trigram` (
   `trigram_id` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
   `description` varchar(500) NOT NULL,
+  `symbol` char(1) NOT NULL,
+  `earlier` varchar(45) NOT NULL,
   PRIMARY KEY (`trigram_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -256,38 +541,8 @@ CREATE TABLE `trigram` (
 
 LOCK TABLES `trigram` WRITE;
 /*!40000 ALTER TABLE `trigram` DISABLE KEYS */;
-INSERT INTO `trigram` VALUES ('Dragon','create, imagine, empowering images.'),('Field','ground, collect, manifest, produce.'),('Ghost River','risk, venture, toil.'),('Lake','connect, express, liberate.'),('Mountain','fix limits, articulate form, make the system better.'),('Penetrating','find, explain, release, awaken.'),('Radiance','clarify, energize, support.'),('Thunder','challenge, inspire, invigorate.');
+INSERT INTO `trigram` VALUES ('Dragon','Force','create, imagine, empowering images.','☰','Mountain'),('Field','Field','ground, collect, manifest, produce.','☷','Penetrating'),('Ghost River','Pit','risk, venture, toil.','☵','Field'),('Lake','Open','connect, express, liberate.','☱','Ghost River'),('Mountain','Bound','fix limits, articulate form, make the system better.','☶','Thunder'),('Penetrating','Penetrating','find, explain, release, awaken.','☴','Lake'),('Radiance','Radiance','clarify, energize, support.','☲','Dragon'),('Thunder','Shake','challenge, inspire, invigorate.','☳','Radiance');
 /*!40000 ALTER TABLE `trigram` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `trigram_line`
---
-
-DROP TABLE IF EXISTS `trigram_line`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `trigram_line` (
-  `trigram_line_id` int(11) NOT NULL,
-  `trigram` varchar(45) NOT NULL,
-  `t_line_position` int(1) NOT NULL,
-  `line` tinyint(4) NOT NULL,
-  PRIMARY KEY (`trigram`,`t_line_position`),
-  KEY `fk_trigram_line_line_particular1_idx` (`line`),
-  KEY `fk_trigram_line_trigram_particular1_idx` (`trigram`),
-  CONSTRAINT `fk_trigram_line_line_particular1` FOREIGN KEY (`line`) REFERENCES `line` (`line_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_trigram_line_trigram_particular1` FOREIGN KEY (`trigram`) REFERENCES `trigram` (`trigram_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `trigram_line`
---
-
-LOCK TABLES `trigram_line` WRITE;
-/*!40000 ALTER TABLE `trigram_line` DISABLE KEYS */;
-INSERT INTO `trigram_line` VALUES (1,'Dragon',1,1),(2,'Dragon',2,1),(3,'Dragon',3,1),(4,'Field',1,0),(5,'Field',2,0),(6,'Field',3,0),(7,'Ghost River',1,0),(8,'Ghost River',2,1),(9,'Ghost River',3,0),(10,'Lake',1,1),(11,'Lake',2,1),(12,'Lake',3,0),(13,'Mountain',1,0),(14,'Mountain',2,0),(15,'Mountain',3,1),(16,'Penetrating',1,0),(17,'Penetrating',2,1),(18,'Penetrating',3,1),(19,'Radiance',1,1),(20,'Radiance',2,0),(21,'Radiance',3,1),(22,'Thunder',1,1),(23,'Thunder',2,0),(24,'Thunder',3,0);
-/*!40000 ALTER TABLE `trigram_line` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -299,4 +554,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-21 14:30:48
+-- Dump completed on 2019-12-26 13:47:48
