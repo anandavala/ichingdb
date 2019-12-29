@@ -6,14 +6,13 @@
 <h4>{{ c.query }}</h4>
 <h2>Response:</h2>
 <table border cellpadding="20" cellspacing="4">
-<tr><td align="center" valign="bottom"><h4>{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</h4></td></tr>
-<tr><td align="center" valign="bottom"><h4>{{ c.initial_name }} {% if line_result %}{% for l in line_result %}{% if forloop.last %} &rarr; {{ l.result_name }}{% endif %}{% endfor %}{% endif %}</h4></td></tr>
-<tr><td align="center" valign="bottom"><table><tr><td><table cellpadding="0" cellspacing="0"><tr><td valign="bottom"><font size="10">{{ c.initial_usym }}</font></td></tr><tr><td valign="top"><font size="10">{{ c.initial_lsym }}</font></td></tr></table></td><td valign="middle">{% if line_result %}{% for l in line_result %}{% if forloop.last %} <font size="5">&nbsp; <b>&rarr;</b> &nbsp;</font> {% endif %}{% endfor %}{% endif %}</td><td>{% if line_result %}{% for l in line_result %}{% if forloop.last %} <table cellpadding="0" cellspacing="0"><tr><td valign="bottom"><font size="10">{{ l.result_usym }}</font></td></tr><tr><td valign="top"><font size="10">{{ l.result_lsym }}</font></td></tr></table>{% endif %}{% endfor %}{% endif %}</td></tr></table></td></tr>
-<tr><td align="center" valign="bottom"><table><tr><td><table cellpadding="0" cellspacing="0"><tr><td align="center" valign="bottom"><h4>{{ c.initial_upper }}</h4></td></tr><tr><td align="center" valign="top"><h4>{{ c.initial_lower }}</h4></td></tr></table></td><td align="center">{% if line_result %}{% for l in line_result %}{% if forloop.last %} <h2>&nbsp; &rarr; &nbsp;</h2> {% endif %}{% endfor %}{% endif %}</td><td>{% if line_result %}{% for l in line_result %}{% if forloop.last %} <table cellpadding="0" cellspacing="0"><tr><td align="center" valign="bottom"><h4>{{ l.result_upper }}</h4></td></tr><tr><td align="center" valign="top"><h4>{{ l.result_lower }}</h4></td></tr></table>{% endif %}{% endfor %}{% endif %}</td></tr></table></td></tr>
+<tr><td align="center" valign="bottom"><font size="+2">{{ c.initial }}{% if line_result %}{% for l in line_result %}.{{ l.line }}{% if forloop.last %} &rarr; {{ l.result }}{% endif %}{% endfor %}{% endif %}</font></td></tr>
+<tr><td align="center" valign="bottom"><font size="+2">{{ c.initial_name }} {% if line_result %}{% for l in line_result %}{% if forloop.last %} &rarr; {{ l.result_name }}{% endif %}{% endfor %}{% endif %}</font></td></tr>
+<tr><td align="center" valign="bottom"><table><tr><td><table cellpadding="0" cellspacing="0"><tr><td align="right" valign="bottom"><font size="+2">{{ c.initial_upper }}</font></td></tr><tr><td align="right" valign="top"><font size="+2">{{ c.initial_lower }}</font></td></tr></table></td><td align="center" valign="top"><font size="+4"> &nbsp;{{ c.initial_sym }}{% if line_result %}{% for l in line_result %}{% if forloop.last %} &nbsp; <b>&rarr;</b> &nbsp; {% endif %}{% endfor %}{% endif %}{% if line_result %}{% for l in line_result %}{% if forloop.last %}{{ l.result_sym }}{% endif %}{% endfor %}{% endif %}&nbsp; </font></td><td>{% if line_result %}{% for l in line_result %}{% if forloop.last %}<table cellpadding="0" cellspacing="0"><tr><td align="left" valign="bottom"><font size="+2">{{ l.result_upper }}</font></td></tr><tr><td align="left" valign="top"><font size="+2">{{ l.result_lower }}</font></td></tr></table>{% endif %}{% endfor %}{% endif %}</td></tr></table></td></tr>
 </table>
 <p>Note: for more details on any hexagram below just click on its name.</p>
 <h3>The primary context is:</h3>
-<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.initial }}/" target="_blank">{{ c.initial }} {{ c.initial_name }}</a></b></font></p>
+<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.initial }}/" target="_blank">{{ c.initial }} {{ c.initial_name }}</a></b></font><font size="+3"> {{ c.initial_sym }}</font></p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
 {% endfor %}
 
@@ -21,18 +20,18 @@
     {% for c in line_result %}
         {% if forloop.first %}
             <h3>The outcome or related factor is: <small>(Use your intuition to decide how this is related to the enquiry.)</small></h3>
-            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.result }}/" target="_blank">{{ c.result }} {{ c.result_name }}</a></b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.result }}/" target="_blank">{{ c.result }} {{ c.result_name }}</a></b><font size="+3"> {{ c.result_sym }}</font></p>
             <p>{{ c.result_gnostic }}.. {{ c.result_desc }}</p>
             <h3>Specific pronouncements within the primary context:</h3>
             <ul>
         {% endif %}
         <li>
-        <h3>Line {{ c.line }} of {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.initial }}/" target="_blank">{{ s.initial }} {{ s.initial_name }}</a> {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
-        <p><strong>In the sub-context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.context }}/" target="_blank">{{ c.context }} {{ c.context_name }}</a>:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></p>
+        <h3>Line {{ c.line }} of {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.initial }}/" target="_blank">{{ s.initial }} {{ s.initial_name }}</a><font size="+3"> {{ s.initial_sym }}</font> {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
+        <p><strong>In the sub-context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.context }}/" target="_blank">{{ c.context }} {{ c.context_name }}</a><font size="+3"> {{ c.context_sym }}</font>:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></p>
         <p><strong>The pronouncement is:</strong><font color="#0000FF"> {{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
-        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.mirror }}/" target="_blank">{{ s.mirror }} {{ s.mirror_name }}</a> {% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
-        <p><font color="#708090"><strong>In the sub context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.m_context }}/" target="_blank">{{ c.m_context }} {{ c.m_context_name }}</a>:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
+        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.mirror }}/" target="_blank">{{ s.mirror }} {{ s.mirror_name }}</a><font size="+3"> {{ s.mirror_sym }}</font>{% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
+        <p><font color="#708090"><strong>In the sub context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.m_context }}/" target="_blank">{{ c.m_context }} {{ c.m_context_name }}</a><font size="+3"> {{ c.m_context_sym }}</font>:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <p><font color="#708090"><strong>The pronouncement is:</strong> {{ c.m_trans }}</font></p>
         <p><font color="#708090">{{ c.m_comm }}</font></p>
         </li>
@@ -44,10 +43,10 @@
             <p>{{ s.mirror_gnostic }}.. {{ s.mirror_desc }}</p>
             {% endfor %}-->
             <h3>The ideal inner stance is: <small>(The inner change operator.)</small></h3>
-            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.innerop }}/" target="_blank">{{ c.innerop }} {{ c.i_name }}</a></b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.innerop }}/" target="_blank">{{ c.innerop }} {{ c.i_name }}</a></b><font size="+3"> {{ c.i_sym }}</font></p>
             <p>{{ c.i_gnostic }}.. {{ c.i_desc }}</p>
             <h3>The ideal outer stance is: <small>(The outer change operator.)</small></h3>
-            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.outerop }}/" target="_blank">{{ c.outerop }} {{ c.o_name }}</a></b></p>
+            <p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.outerop }}/" target="_blank">{{ c.outerop }} {{ c.o_name }}</a></b><font size="+3"> {{ c.o_sym }}</font></p>
             <p>{{ c.o_gnostic }}.. {{ c.o_desc }}</p>
         {% endif %}
     {% endfor %}
@@ -55,13 +54,13 @@
 
 {% for c in simple_result %}
 <h3>The ideal overall approach to the situation is:</h3>
-<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.ideal }}/" target="_blank">{{ c.ideal }} {{ c.i_name }}</a></b></p>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.ideal }}/" target="_blank">{{ c.ideal }} {{ c.i_name }}</a></b><font size="+3"> {{ c.i_sym }}</font></p>
 <p>{{ c.i_gnostic }}.. {{ c.i_desc }}</p>
 <h3>The hidden possibility in the situation is:</h3>
-<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.hidden }}/" target="_blank">{{ c.hidden }} {{ c.h_name }}</a></b></p>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.hidden }}/" target="_blank">{{ c.hidden }} {{ c.h_name }}</a></b><font size="+3"> {{ c.h_sym }}</font></p>
 <p>{{ c.h_gnostic }}.. {{ c.h_desc }}</p>
 <h3>What is counter-indicated in your situation: <small>(The shadow site.)</small></h3>
-<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.shadow }}/" target="_blank">{{ c.shadow }} {{ c.s_name }}</a></b></p>
+<p><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.shadow }}/" target="_blank">{{ c.shadow }} {{ c.s_name }}</a></b><font size="+3"> {{ c.s_sym }}</font></p>
 <p>{{ c.s_gnostic }}.. {{ c.s_desc }}</p>
 {% endfor %}
 
