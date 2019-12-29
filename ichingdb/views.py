@@ -53,10 +53,10 @@ def explore(request):
         html=""
         length = 0
         if explore_result:
-            for i, r in enumerate(explore_result):
-                html += "<tr><td>%d</td><td>%d %s</td><td><font size='+3'>%s</font></td><td>%d%d%d%d%d%d</td><td>%d%d%d%d%d%d</td><td><font size='+3'>%s</font></td><td>%d %s</td><td><a href=\"/ichingdb/%d/%d/\">Reading</a></td></tr>" % (i+1, r.h_id, r.h_name, r.h_sym, r.l6, r.l5, r.l4, r.l3, r.l2, r.l1, r.c6, r.c5, r.c4, r.c3, r.c2, r.c1, r.r_sym, r.r_id, r.r_name, r.h_id, r.r_id)
-                length = i+1
-        header="<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black; border-collapse: collapse; padding: 5px;}</style></head><body><h1>Pattern</h1><table><tr><th>Lines</th><th>Changes</th></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr></table><h1>%d Matches:</h1><table><tr><th>idx</th><th>Initial</th><th>Hex</th><th>Lines</th><th>Changes</th><th>Hex</th><th>Related</th><th>Link</th></tr>" % (l6, c6, l5, c5, l4, c4, l3, c3, l2, c2, l1, c1, length)
+            for r in explore_result:
+                html += "<tr><td>%d %s</td><td><font size='+3'>%s</font></td><td>%d%d%d%d%d%d</td><td>%d%d%d%d%d%d</td><td><font size='+3'>%s</font></td><td>%d %s</td><td><a href=\"/ichingdb/%d/%d/\">Reading</a></td></tr>" % (r.h_id, r.h_name, r.h_sym, r.l6, r.l5, r.l4, r.l3, r.l2, r.l1, r.c6, r.c5, r.c4, r.c3, r.c2, r.c1, r.r_sym, r.r_id, r.r_name, r.h_id, r.r_id)
+                length = length+1
+        header="<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black; border-collapse: collapse; padding: 5px;}</style></head><body><h1>Pattern</h1><table><tr><th>Lines</th><th>Changes</th></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr></table><h1>%d Matches:</h1><table><tr><th>Initial</th><th>Hex</th><th>Lines</th><th>Changes</th><th>Hex</th><th>Related</th><th>Link</th></tr>" % (l6, c6, l5, c5, l4, c4, l3, c3, l2, c2, l1, c1, length)
         footer = "</table></body></html>"
         return HttpResponse(header + html + footer)
     else:
