@@ -12,8 +12,11 @@
 </table>
 <p>Note: for more details on any hexagram below just click on its name.</p>
 <h3>The primary context is:</h3>
-<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.initial }}/" target="_blank">{{ c.initial }} {{ c.initial_name }}</a></b></font><font size="+3"> {{ c.initial_sym }}</font></p>
+<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.initial }}/" target="_blank">{{ c.initial }} {{ c.initial_name }}</a></b></font><font size="+3"> {{ c.initial_sym }}</font> ({{ c.initial_type }})</p>
 <p><font color="#0000FF">{{ c.initial_gnostic }}.. {{ c.initial_desc }}</font></p>
+<h3>Which is paired with the mirror hexagram:</h3>
+<p><font color="#0000FF"><b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.mirror }}/" target="_blank">{{ c.mirror }} {{ c.mirror_name }}</a></b></font><font size="+3"> {{ c.mirror_sym }}</font> ({{ c.mirror_type }})</p>
+<p><font color="#0000FF">{{ c.mirror_gnostic }}.. {{ c.mirror_desc }}</font></p>
 {% endfor %}
 
 {% if line_result %}
@@ -26,11 +29,11 @@
             <ul>
         {% endif %}
         <li>
-        <h3>Line {{ c.line }} of {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.initial }}/" target="_blank">{{ s.initial }} {{ s.initial_name }}</a><font size="+3"> {{ s.initial_sym }}</font> {% endfor %}: <small>(Inspiration) {{ c.line_name }} ({{ c.line_desc }})</small></h3>
+        <h3>Line {{ c.line }} of {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.initial }}/" target="_blank">{{ s.initial }} {{ s.initial_name }}</a><font size="+3"> {{ s.initial_sym }}</font> ({{ s.initial_type }}){% endfor %}: <small> {{ c.line_name }} ({{ c.line_desc }})</small></h3>
         <p><strong>In the sub-context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.context }}/" target="_blank">{{ c.context }} {{ c.context_name }}</a><font size="+3"> {{ c.context_sym }}</font>:</b> <i>{{ c.context_gnostic }}.. {{ c.context_desc }}</i></p>
         <p><strong>The pronouncement is:</strong><font color="#0000FF"> {{ c.line_trans }}</font></p>
         <p><font color="#0000FF">{{ c.line_comm }}</font></p>
-        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.mirror }}/" target="_blank">{{ s.mirror }} {{ s.mirror_name }}</a><font size="+3"> {{ s.mirror_sym }}</font>{% endfor %}: <small>(Manifestation) {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
+        <h3><font color="#708090">There is interplay with line {{ c.m_line }} of the mirror hexagram {% for s in simple_result %} <a href="http://inthefamilyway.org/iching/hexagrams/h{{ s.mirror }}/" target="_blank">{{ s.mirror }} {{ s.mirror_name }}</a><font size="+3"> {{ s.mirror_sym }}</font> ({{ s.mirror_type }}){% endfor %}: <small> {{ c.m_line_name }} ({{ c.m_line_desc }})</small></font></h3>
         <p><font color="#708090"><strong>In the sub context of:</strong> <b><a href="http://inthefamilyway.org/iching/hexagrams/h{{ c.m_context }}/" target="_blank">{{ c.m_context }} {{ c.m_context_name }}</a><font size="+3"> {{ c.m_context_sym }}</font>:</b> <i>{{ c.m_context_gnostic }}.. {{ c.m_context_desc }}</i></font></p>
         <p><font color="#708090"><strong>The pronouncement is:</strong> {{ c.m_trans }}</font></p>
         <p><font color="#708090">{{ c.m_comm }}</font></p>
