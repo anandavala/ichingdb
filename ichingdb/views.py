@@ -11,6 +11,18 @@ def index(request):
 def about(request):
     return render(request, 'ichingdb/about.html')
 
+def lowerstatic(request):
+    return render(request, 'ichingdb/lowerstatic.html')
+
+def lowerchanging(request):
+    return render(request, 'ichingdb/lowerchanging.html')
+
+def upperstatic(request):
+    return render(request, 'ichingdb/upperstatic.html')
+
+def upperchanging(request):
+    return render(request, 'ichingdb/upperchanging.html')
+
 def archive(request):
     consultation_list = reversed(Consultation.objects.all())
     return render(request, 'ichingdb/archive.html', {'consultation_list': consultation_list})

@@ -28,4 +28,12 @@ urlpatterns = [
     path('archive/', views.archive, name='archive'),
     # ex: /ichingdb/about
     path('about/', views.about, name='about'),
+    # ex: /ichingdb/lowerstatic
+    path('lowerstatic/', views.lowerstatic, name='lowerstatic'),
+    # ex: /ichingdb/upperstatic
+    path('upperstatic/', views.upperstatic, name='upperstatic'),
+    # ex: /ichingdb/lowerchanging
+    path('lowerchanging/', views.lowerchanging, name='lowerchanging'),
+    # ex: /ichingdb/upperchanging
+    path('upperchanging/', views.upperchanging, name='upperchanging'),
 ]
