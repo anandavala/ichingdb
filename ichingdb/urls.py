@@ -36,4 +36,6 @@ urlpatterns = [
     path('lowerchanging/', views.lowerchanging, name='lowerchanging'),
     # ex: /ichingdb/upperchanging
     path('upperchanging/', views.upperchanging, name='upperchanging'),
+    # ex: /ichingdb/path01
+    path('path01/', views.path01, name='path01'),
 ]

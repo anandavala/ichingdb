@@ -10,12 +10,12 @@
 </head>
 <body>
 <h1>Find paths between hexagrams.</h1>
-<p>Explore the space of possible paths with step 'Size', starting from 'Initial', passing through 'Waypoint', at step atStep.</p>
+<p>Explore the space of possible paths with "Num Changing Lines" in each hexagram, starting from "Initial", ending at "Final", with "Num Steps". Be careful setting "Num Changing Lines" greater than one AND "Num Steps" greater than four, there may be tens of thousands of possible paths, which may take time to compute.</p>
 <form method="POST" action="">
 {% csrf_token %}
 <table>
-<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
-<tr><td><input type="text" name="steps" value="1"></td><td><input type="text" name="initial" value="12"></td><td><input type="text" name="waypoint" value="11"></td><td><input type="text" name="atstep" value="6"></td></tr>
+<tr><th>Num Changing Lines</th><th>Initial</th><th>Final</th><th>Num Steps</th></tr>
+<tr><td><input type="text" name="steps" value="1,2"></td><td><input type="text" name="initial" value="12"></td><td><input type="text" name="waypoint" value="11"></td><td><input type="text" name="atstep" value="4"></td></tr>
 </table>
 <p>This may take a minute...</p>
 <p><button type="submit">Paths</button></p>
@@ -26,21 +26,21 @@
 <li>
 <p>Find all paths with step size 1, starting at 2 Field and passing through 1 Force atStep 6.</p>
 <table>
-<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><th>NChng</th><th>Initial</th><th>Final</th><th>NSteps</th></tr>
 <tr><td>1</td><td>2</td><td>1</td><td>6</td></tr>
 </table>
 </li>
 <li>
 <p>Find all paths with step size 1, starting at 12 Field and passing through 11 Pervading atStep 6.</p>
 <table>
-<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><th>NChng</th><th>Initial</th><th>Final</th><th>NSteps</th></tr>
 <tr><td>1</td><td>12</td><td>11</td><td>6</td></tr>
 </table>
 </li>
 <li>
 <p>Find all paths with step size 1 or 2, starting at 47 Confining and passing through 60 Articulating atStep 4.</p>
 <table>
-<tr><th>Size</th><th>Initial</th><th>Waypoint</th><th>atStep</th></tr>
+<tr><th>NChng</th><th>Initial</th><th>Final</th><th>NSteps</th></tr>
 <tr><td>1,2</td><td>47</td><td>60</td><td>4</td></tr>
 </table>
 </li>
