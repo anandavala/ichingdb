@@ -40,4 +40,6 @@ urlpatterns = [
     path('path01/', views.path01, name='path01'),
     # ex: /ichingdb/path02
     path('path02/', views.path02, name='path02'),
+    # ex: /ichingdb/path03
+    path('path03/', views.path03, name='path03'),
 ]

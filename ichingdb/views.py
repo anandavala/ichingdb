@@ -29,6 +29,9 @@ def path01(request):
 def path02(request):
     return render(request, 'ichingdb/path02.html')
 
+def path03(request):
+    return render(request, 'ichingdb/path03.html')
+
 def archive(request):
     consultation_list = reversed(Consultation.objects.all())
     return render(request, 'ichingdb/archive.html', {'consultation_list': consultation_list})
