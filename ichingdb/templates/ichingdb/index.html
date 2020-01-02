@@ -11,24 +11,29 @@
 <li><p><a href="https://www.onlineclarity.co.uk/learn/beginners/4-overview-of-a-reading/getting-started-with-interpretation/" target="_blank">How do I interpret a reading?</a></p></li>
 </ul>
 <h3>Tools to explore the structure of the I Ching</h3>
-<h4><a href="{% url 'ichingdb:explore' %}">Possible Readings</a></h4>
-<table>
-<tr><td> &nbsp; &nbsp; &nbsp; </td><td>
-<p>Some precomputed results:</p>
 <ul>
-<li>Lower Trigram Families: <a href="{% url 'ichingdb:lowerstatic' %}">No Changing Lines</a> , <a href="{% url 'ichingdb:lowerchanging' %}">With Changing Lines</a></li>
-<li>Upper Trigram Families: <a href="{% url 'ichingdb:upperstatic' %}">No Changing Lines</a> , <a href="{% url 'ichingdb:upperchanging' %}">With Changing Lines</a></li>
+    <li><h4><a href="{% url 'ichingdb:hextable' %}">Hexagram Lookup Table</a></h4>
+    <li><h4><a href="{% url 'ichingdb:explore' %}">Possible Readings</a></h4>
+        <table>
+        <tr><td> &nbsp; &nbsp; &nbsp; </td><td>
+        <p>Some precomputed results:</p>
+        <ul>
+        <li>Lower Trigram Families: <a href="{% url 'ichingdb:lowerstatic' %}">No Changing Lines</a> , <a href="{% url 'ichingdb:lowerchanging' %}">With Changing Lines</a></li>
+        <li>Upper Trigram Families: <a href="{% url 'ichingdb:upperstatic' %}">No Changing Lines</a> , <a href="{% url 'ichingdb:upperchanging' %}">With Changing Lines</a></li>
+        </ul>
+        </td></tr>
+        </table>
+    <li><h4><a href="{% url 'ichingdb:related' %}">Related Hexagrams</a></h4>
+    <li><h4><a href="{% url 'ichingdb:paths' %}">Paths Between Hexagrams</a></h4>
+        <table>
+        <tr><td> &nbsp; &nbsp; &nbsp; </td><td>
+        <p>Some precomputed results:</p>
+        <ul>
+        <li><a href="{% url 'ichingdb:path01' %}">Example path 1</a>
+        <li><a href="{% url 'ichingdb:path02' %}">Example path 2</a>
+        <li><a href="{% url 'ichingdb:path03' %}">Example path 3</a>
+        </ul>
+        </td></tr>
+        </table>
 </ul>
-</td></tr>
-</table>
-<h4><a href="{% url 'ichingdb:related' %}">Related Hexagrams</a></h4>
-<h4><a href="{% url 'ichingdb:paths' %}">Paths Between Hexagrams</a></h4>
-<table>
-<tr><td> &nbsp; &nbsp; &nbsp; </td><td>
-<p>Some precomputed results:</p>
-<ul>
-<li><a href="{% url 'ichingdb:path01' %}">Example path 1</a>
-<li><a href="{% url 'ichingdb:path02' %}">Example path 2</a>
-<li><a href="{% url 'ichingdb:path03' %}">Example path 3</a>
-</ul>
-</td></tr>
+

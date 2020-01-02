@@ -42,4 +42,6 @@ urlpatterns = [
     path('path02/', views.path02, name='path02'),
     # ex: /ichingdb/path03
     path('path03/', views.path03, name='path03'),
+    # ex: /ichingdb/hextable
+    path('hextable/', views.hextable, name='hextable'),
 ]

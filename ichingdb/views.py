@@ -32,6 +32,9 @@ def path02(request):
 def path03(request):
     return render(request, 'ichingdb/path03.html')
 
+def hextable(request):
+    return render(request, 'ichingdb/hextable.html')
+
 def archive(request):
     consultation_list = reversed(Consultation.objects.all())
     return render(request, 'ichingdb/archive.html', {'consultation_list': consultation_list})
